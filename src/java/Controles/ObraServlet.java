@@ -14,8 +14,12 @@ import Entidades.Status;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +35,7 @@ public class ObraServlet extends HttpServlet {
 
     Locale ptBr = new Locale("pt", "BR");
     NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);
-    FastDateFormat
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -97,7 +101,11 @@ public class ObraServlet extends HttpServlet {
                 //use a função do dao p/ calcular o id
                 obra.setIdObra(daoObra.autoIdObra());
                 obra.setNomeObra(nomeObra);
-                obra.setAnoObra(anoObra);
+                try {
+                    obra.setAnoObra(sdf.parse(anoObra));
+                } catch (ParseException ex) {
+                    Logger.getLogger(ObraServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 obra.setQuantidadeObra(Integer.parseInt(quantidadeObra));
                 obra.setObservacoesObra(observacoesObra);
                 //seta a tipoObra do obra, que vai gravar apenas o id como fk no obra  no banco

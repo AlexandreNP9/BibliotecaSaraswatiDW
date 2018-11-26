@@ -70,12 +70,12 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nome da obra" style="width: 170px;">Nome</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Ano da obra" style="width: 170px;">Ano de publicação</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Quantidade da obra" style="width: 170px;">Quantidade</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Observacoes da obra" style="width: 170px;">Observações</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="TipoObra da obra" style="width: 147px;">TipoObra</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Status da obra" style="width: 147px;">Status</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nome do obra" style="width: 170px;">Nome</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Ano do obra" style="width: 170px;">Ano publicação</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Quantidade do obra" style="width: 170px;">Quantidade</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Observacoes do obra" style="width: 170px;">Observacoes</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="TipoObra do obra" style="width: 147px;">TipoObra</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Status do obra" style="width: 170px;">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -88,7 +88,7 @@
                                             <td><%=p.getQuantidadeObra()%></td>
                                             <td><%=p.getObservacoesObra()%></td>
                                             <td><%=p.getTipoobraidtipoObra().getNometipoObra()%></td>
-                                            <td><%=p.getStatusIdStatus().getNomeStatus()%></td>
+                                            <td><%=p.getNomeObra()%></td>
                                         </tr>
                                         <%}%>
 

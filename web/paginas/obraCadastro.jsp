@@ -1,19 +1,15 @@
-<%@page import="DAOs.DAOStatus"%>
-<%@page import="Entidades.Status"%>
-%-- 
+<%-- 
     Document   : obraCadastro
     Created on : 05/07/2018, 17:55:59
     Author     : Jaque
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.*, 
-        DAOs.DAOTipoObra ,
-        Entidades.TipoObra" %>
+<%@page import="java.util.*, DAOs.DAOTipoObra, Entidades.TipoObra, DAOs.DAOStatus, Entidades.Status" %>
 <%
     DAOTipoObra dao = new DAOTipoObra();
-    DAOStatus daodao = new DAOStatus();
     List<TipoObra> cat = dao.listInOrderNome();
+    DAOStatus daodao = new DAOStatus();
     List<Status> catcat = daodao.listInOrderNome();
 %>
 <!DOCTYPE html>
@@ -386,7 +382,7 @@
                     <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Nome da obra</label>
+                                <label>Nome</label>
                                 <input class="form-control" type="text" name="nome" />
                             </div>
                         </div>
@@ -396,7 +392,7 @@
                                 <input class="form-control" type="text" name="ano" />
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="row">
                         <div class="col-lg-6">        
@@ -406,14 +402,11 @@
                             </div>
                         </div>
                         <div class="col-lg-6">        
-                            <div class="form-group">
-                                <label>Observações</label>
-                                <input class="form-control" type="text" name="observacoes" />
-                            </div>
-                        </div>
-                                                
+                            <label>Observações</label>
+                            <input class="form-control" type="text" name="observacoes" />
+                        </div>                        
                     </div>
-                    <div>
+                    <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>TipoObra</label>
@@ -424,7 +417,8 @@
                                     <% }%>
                                 </select>
                             </div>
-                                <div class="col-lg-6">        
+                        </div>
+                        <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Status</label>
                                 <select class="form-control" name="status">
@@ -435,14 +429,6 @@
                                 </select>
                             </div>
                         </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-12">        
-                            <button type="submit" class="btn btn-default" value="1" name="ok">Gravar</button>
-                        </div>
-                        <!-- /.col-lg-6 (nested) -->
                     </div>
                 </form>
 
