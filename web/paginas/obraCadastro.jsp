@@ -4,13 +4,19 @@
     Author     : Jaque
 --%>
 
+<%@page import="Entidades.TipoObra"%>
+<%@page import="DAOs.DAOTipoObra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.*, DAOs.DAOTipoObra, Entidades.TipoObra, DAOs.DAOStatus, Entidades.Status" %>
+<%@page import="java.util.*, 
+        DAOs.DAOStatus ,
+        Entidades.Status" %>
 <%
-    DAOTipoObra dao = new DAOTipoObra();
-    List<TipoObra> cat = dao.listInOrderNome();
-    DAOStatus daodao = new DAOStatus();
-    List<Status> catcat = daodao.listInOrderNome();
+    DAOStatus dao = new DAOStatus();
+    List<Status> cat = dao.listInOrderNome();
+%>
+<%
+    DAOTipoObra daodao = new DAOTipoObra();
+    List<TipoObra> catcat = daodao.listInOrderNome();
 %>
 <!DOCTYPE html>
 <html>
@@ -402,33 +408,42 @@
                             </div>
                         </div>
                         <div class="col-lg-6">        
-                            <label>Observações</label>
-                            <input class="form-control" type="text" name="observacoes" />
-                        </div>                        
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>TipoObra</label>
-                                <select class="form-control" name="tipoObra">
-                                    <option value="">--SELECIONE--</option>
-                                    <% for (TipoObra c : cat) {%>
-                                    <option value="<%=c.getIdtipoObra()%>"><%=c.getNometipoObra()%></option>
-                                    <% }%>
-                                </select>
+                                <label>Observações</label>
+                                <input class="form-control" type="text" name="observacoes" />
                             </div>
                         </div>
+                    </div>
+                    <div>
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Status</label>
                                 <select class="form-control" name="status">
                                     <option value="">--SELECIONE--</option>
-                                    <% for (Status c : catcat) {%>
+                                    <% for (Status c : cat) {%>
                                     <option value="<%=c.getIdStatus()%>"><%=c.getNomeStatus()%></option>
                                     <% }%>
                                 </select>
                             </div>
+                        </div>                        
+                        <div class="col-lg-6">        
+                            <div class="form-group">
+                                <label>Tipo de Obra</label>
+                                <select class="form-control" name="tipoObra">
+                                    <option value="">--SELECIONE--</option>
+                                    <% for (TipoObra c : catcat) {%>
+                                    <option value="<%=c.getIdtipoObra()%>"><%=c.getNometipoObra()%></option>
+                                    <% }%>
+                                </select>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">        
+                            <button type="submit" class="btn btn-default" value="1" name="ok">Gravar</button>
                         </div>
+                        <!-- /.col-lg-6 (nested) -->
                     </div>
                 </form>
 
