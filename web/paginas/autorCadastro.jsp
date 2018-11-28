@@ -382,12 +382,22 @@
                 </div>
                 <!-- /.row -->
                 <form method="post" action="${pageContext.request.contextPath}/autor" role="form">
-                    <input name="id" type="hidden" value="1"/>
                     <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
+                                <label>Id</label>
+                                <% if (editando == null) {%>
+                                <input class="form-control"  type="text" disabled/>
+                                <% } else {%>
+                                <span class="form-control" disabled ><%=cat.getIdAutor()%></span>
+                                <% }%>
+                                <input class="form-control" type="hidden" name="id" value="<%=cat.getIdAutor()%>"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">        
+                            <div class="form-group">
                                 <label>Sobrenome</label>
-                                <input class="form-control" type="text" name="sobrenome" value="<%=editando != null ? cat.getSobrenomeAutor() : ""%>"/>
+                                <input class="form-control" type="text" name="sobrenome" value="<%=editando != null ? cat.getNomeAutor() : ""%>"/>
                             </div>
                         </div>
                         <div class="col-lg-6">        

@@ -59,12 +59,9 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nome da emprestimo" style="width: 170px;">Nome</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Ano da emprestimo" style="width: 170px;">Ano</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Quantidade da emprestimo" style="width: 170px;">Quantidade</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Observacoes da emprestimo" style="width: 170px;">Observações</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Data da emprestimo" style="width: 170px;">Data (dd/MM/yyyy)</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Usuario da emprestimo" style="width: 147px;">Usuário</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra da emprestimo" style="width: 147px;">Obra</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Usuario da emprestimo" style="width: 147px;">Tipo de Emprestimo</th>
                                         </tr>
                                     </thead>
                                     <tbody>

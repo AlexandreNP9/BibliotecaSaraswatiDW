@@ -11,8 +11,8 @@
         java.text.NumberFormat" %>
 <%
     Locale ptBr = new Locale("pt", "BR");
-    NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);  
-    
+    NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);
+
     DAOAutor dao = new DAOAutor();
     List<Autor> autor = dao.listInOrderNome();
 %>
@@ -82,7 +82,11 @@
                                             for (Autor p : autor) {
                                         %>
                                         <tr>
+                                            <td><%=p.getSobrenomeAutor()%></td>
                                             <td><%=p.getNomeAutor()%></td>
+                                            <td><%=p.getNascimentoAutor()%></td>
+                                            <td><%=p.getFalecimentoAutor()%></td>
+                                            <td><%=p.getImagemAutor()%></td>
                                         </tr>
                                         <%}%>
 

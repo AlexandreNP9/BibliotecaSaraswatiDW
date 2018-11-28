@@ -63,7 +63,11 @@
                                         <tr role="row">
                                             <th>&nbsp;</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id da Autor" style="width: 170px;">Id</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Nome da Autor" style="width: 206px;">Autor</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Sobrenome da Autor" style="width: 206px;">Sobrenome</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Nome da Autor" style="width: 206px;">Nome</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Nascimento da Autor" style="width: 206px;">Nascimento</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Falecimentoda Autor" style="width: 206px;">Falecimento</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Imagem da Autor" style="width: 206px;">Imagem</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,7 +76,11 @@
                                             <tr>
                                                 <td><a href="${pageContext.request.contextPath}/paginas/autorCadastro.jsp?id=${cat.getIdAutor()}">editar</a></td>
                                                 <td>${cat.getIdAutor()}</td>
+                                                <td>${cat.getSobrenomeAutor()}</td>
                                                 <td>${cat.getNomeAutor()}</td>
+                                                <td>${cat.getNascimentoAutor()}</td>
+                                                <td>${cat.getFalecimentoAutor()}</td>
+                                                <td>${cat.getImagemAutor()}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

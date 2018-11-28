@@ -61,7 +61,7 @@ public class ObraServlet extends HttpServlet {
         String submitCadastro = "";
         int tipoObraId = 0;
         int statusId = 0;
-        
+
         try (PrintWriter out = response.getWriter()) {
             submitCadastro = request.getParameter("ok");
 
@@ -79,7 +79,7 @@ public class ObraServlet extends HttpServlet {
             } else {
                 //parametros do form
                 //aqui pq se passar do if não serão nulos
-                
+
                 //tudo que vem do formulario é string, por isso aqui alguns precisam de conversão
                 tipoObraId = Integer.parseInt(request.getParameter("tipoObra"));
                 statusId = Integer.parseInt(request.getParameter("status"));
@@ -91,7 +91,7 @@ public class ObraServlet extends HttpServlet {
                 }
                 quantidadeObra = Integer.valueOf(request.getParameter("quantidade"));
                 observacoesObra = request.getParameter("observacoes");
-                
+
                 DAOObra daoObra = new DAOObra();
                 DAOTipoObra daoTipoObra = new DAOTipoObra();
                 DAOStatus daoStatus = new DAOStatus();
@@ -104,14 +104,13 @@ public class ObraServlet extends HttpServlet {
                 Status status = daoStatus.listById(statusId).get(0);
 
                 //seta informacoes do obra na entidade
-                
                 //essa tabela nao tem id automatico no banco, então precisa setar
                 //para nao pedir p/ obra no formulario e correr o risco de repetição
                 //use a função do dao p/ calcular o id
                 obra.setIdObra(daoObra.autoIdObra());
                 obra.setNomeObra(nomeObra);
                 obra.setAnoObra(anoObra);
-                
+
                 obra.setQuantidadeObra(quantidadeObra);
                 obra.setObservacoesObra(observacoesObra);
                 //seta a tipoObra do obra, que vai gravar apenas o id como fk no obra  no banco
@@ -139,9 +138,9 @@ public class ObraServlet extends HttpServlet {
                     + "<td>" + l.getNomeObra() + "</td>"
                     + "<td>" + sdf.format(l.getAnoObra()) + "</td>"
                     + "<td>" + l.getQuantidadeObra() + "</td>"
-                    + "<td>" + l.getObservacoesObra()+ "</td>"
-                    + "<td>" + l.getTipoobraidtipoObra().getNometipoObra()+ "</td>"
-                    + "<td>" + l.getStatusIdStatus().getNomeStatus()+ "</td>"
+                    + "<td>" + l.getObservacoesObra() + "</td>"
+                    + "<td>" + l.getTipoobraidtipoObra().getNometipoObra() + "</td>"
+                    + "<td>" + l.getStatusIdStatus().getNomeStatus() + "</td>"
                     + "</tr>";
         }
 
@@ -157,9 +156,9 @@ public class ObraServlet extends HttpServlet {
                     + "<td>" + l.getNomeObra() + "</td>"
                     + "<td>" + sdf.format(l.getAnoObra()) + "</td>"
                     + "<td>" + l.getQuantidadeObra() + "</td>"
-                    + "<td>" + l.getObservacoesObra()+ "</td>"
-                    + "<td>" + l.getTipoobraidtipoObra().getNometipoObra()+ "</td>"
-                    + "<td>" + l.getStatusIdStatus().getNomeStatus()+ "</td>"
+                    + "<td>" + l.getObservacoesObra() + "</td>"
+                    + "<td>" + l.getTipoobraidtipoObra().getNometipoObra() + "</td>"
+                    + "<td>" + l.getStatusIdStatus().getNomeStatus() + "</td>"
                     + "</tr>";
         }
 

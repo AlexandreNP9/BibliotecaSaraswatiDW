@@ -58,7 +58,7 @@ public class EmprestimoServlet extends HttpServlet {
             Logger.getLogger(EmprestimoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         String submitCadastro = "";
-        
+
         try (PrintWriter out = response.getWriter()) {
             submitCadastro = request.getParameter("ok");
 
@@ -71,12 +71,12 @@ public class EmprestimoServlet extends HttpServlet {
                 if (usuarioId == 0) {
                     resultado = listaEmprestimosCadastrados();
                 } else {
-                    resultado = listaEmprestimoNome(usuarioId);
+                    resultado = listaEmprestimosCadastrados();
                 }
             } else {
                 //parametros do form
                 //aqui pq se passar do if não serão nulos
-                
+
                 //tudo que vem do formulario é string, por isso aqui alguns precisam de conversão
                 usuarioId = Integer.parseInt(request.getParameter("usuario"));
                 obraId = Integer.parseInt(request.getParameter("obra"));
@@ -85,7 +85,7 @@ public class EmprestimoServlet extends HttpServlet {
                 } catch (ParseException ex) {
                     Logger.getLogger(EmprestimoServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
                 DAOEmprestimo daoEmprestimo = new DAOEmprestimo();
                 DAOUsuario daoUsuario = new DAOUsuario();
                 DAOObra daoObra = new DAOObra();
@@ -98,7 +98,6 @@ public class EmprestimoServlet extends HttpServlet {
                 Obra obra = daoObra.listById(obraId).get(0);
 
                 //seta informacoes do emprestimo na entidade
-                
                 //essa tabela nao tem id automatico no banco, então precisa setar
                 //para nao pedir p/ emprestimo no formulario e correr o risco de repetição
                 //use a função do dao p/ calcular o id
@@ -106,10 +105,9 @@ public class EmprestimoServlet extends HttpServlet {
                 emprestimo.setUsuarioIdUsuario(usuario);
                 emprestimo.setObraIdObra(obra);
                 emprestimo.setData(dataEmprestimo);
-                
+
                 //seta a usuario do emprestimo, que vai gravar apenas o id como fk no emprestimo  no banco
                 //porém, aqui é orientado a objeto, então o usuario é um objeto da entidade usuario
-                
                 //insere o emprestimo no banco
                 daoEmprestimo.inserir(emprestimo);
                 //faz a busca p/ direcionar p/ uma lista atualizada
@@ -127,9 +125,9 @@ public class EmprestimoServlet extends HttpServlet {
         List<Emprestimo> lista = emprestimo.listByNome(nomeEmprestimo);
         for (Emprestimo l : lista) {
             tabela += "<tr>"
-                    + "<td>" + l.getIdEmprestimo()+ "</td>"
-                    + "<td>" + l.getUsuarioIdUsuario()+ "</td>"
-                    + "<td>" + l.getObraIdObra()+ "</td>"
+                    + "<td>" + l.getIdEmprestimo() + "</td>"
+                    + "<td>" + l.getUsuarioIdUsuario() + "</td>"
+                    + "<td>" + l.getObraIdObra() + "</td>"
                     + "<td>" + sdf.format(l.getData()) + "</td>"
                     + "</tr>";
         }
@@ -140,12 +138,11 @@ public class EmprestimoServlet extends HttpServlet {
     protected String listaEmprestimosCadastrados() {
         DAOEmprestimo emprestimo = new DAOEmprestimo();
         String tabela = "";
-        List<Emprestimo> lista = emprestimo.listInOrderNome();
+        List<Emprestimo> lista = emprestimo.listInOrderId();
         for (Emprestimo l : lista) {
             tabela += "<tr>"
-                    + "<td>" + l.getIdEmprestimo()+ "</td>"
-                    + "<td>" + l.getUsuarioIdUsuario()+ "</td>"
-                    + "<td>" + l.getObraIdObra()+ "</td>"
+                    + "<td>" + l.getUsuarioIdUsuario() + "</td>"
+                    + "<td>" + l.getObraIdObra() + "</td>"
                     + "<td>" + sdf.format(l.getData()) + "</td>"
                     + "</tr>";
         }

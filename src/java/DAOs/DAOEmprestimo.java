@@ -35,18 +35,18 @@ public class DAOEmprestimo extends DAOGenerico<Emprestimo> {
         return em.createQuery("SELECT e FROM Emprestimo e ORDER BY e.idEmprestimo").getResultList();
     }
 
-    public List<String> listInOrderNomeStrings(String qualOrdem) {
-        List<Emprestimo> lf;
-        if (qualOrdem.equals("id")) {
-            lf = listInOrderId();
-        } else {
-            lf = listInOrderNome();
-        }
-
-        List<String> ls = new ArrayList<>();
-        for (int i = 0; i < lf.size(); i++) {
-            ls.add(lf.get(i).getIdEmprestimo() + "-" + lf.get(i).getNomeEmprestimo());
-        }
-        return ls;
-    }
+//    public List<String> listInOrderNomeStrings(String qualOrdem) {
+//        List<Emprestimo> lf;
+//        if (qualOrdem.equals("id")) {
+//            lf = listInOrderId();
+//        } else {
+//            lf = listInOrderNome();
+//        }
+//
+//        List<String> ls = new ArrayList<>();
+//        for (int i = 0; i < lf.size(); i++) {
+//            ls.add(lf.get(i).getIdEmprestimo() + "-" + lf.get(i).getNomeEmprestimo());
+//        }
+//        return ls;
+//    }
 }

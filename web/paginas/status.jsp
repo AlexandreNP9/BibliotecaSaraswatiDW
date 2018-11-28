@@ -15,6 +15,6 @@
     </head>
     <body>
         <c:redirect url="index.jsp"></c:redirect>        
-        
+
     </body>
 </html>

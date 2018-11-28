@@ -112,5 +112,5 @@ public class TipoUsuario implements Serializable {
     public String toString() {
         return "Entidades.TipoUsuario[ idTipoUsuario=" + idTipoUsuario + " ]";
     }
-    
+
 }

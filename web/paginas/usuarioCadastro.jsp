@@ -392,7 +392,7 @@
                                 <input class="form-control" type="text" name="nome" />
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="row">
                         <div class="col-lg-6">        

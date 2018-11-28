@@ -62,7 +62,7 @@ public class ModuloSistemaServlet extends HttpServlet {
         }
 
     }
-    
+
     protected void processRequest2(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -94,7 +94,7 @@ public class ModuloSistemaServlet extends HttpServlet {
         }
 
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

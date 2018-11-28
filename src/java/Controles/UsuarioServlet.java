@@ -63,13 +63,12 @@ public class UsuarioServlet extends HttpServlet {
             } else {
                 //parametros do form
                 //aqui pq se passar do if não serão nulos
-                
+
                 //tudo que vem do formulario é string, por isso aqui alguns precisam de conversão
                 tipoUsuarioId = Integer.parseInt(request.getParameter("tipoUsuario"));
                 nomeUsuario = request.getParameter("nome");
                 String loginUsuario = request.getParameter("login");
                 String senhaUsuario = request.getParameter("senha");
-                
 
                 DAOUsuario daoUsuario = new DAOUsuario();
                 DAOTipoUsuario daoTipoUsuario = new DAOTipoUsuario();
@@ -81,7 +80,6 @@ public class UsuarioServlet extends HttpServlet {
                 TipoUsuario tipoUsuario = daoTipoUsuario.listById(tipoUsuarioId).get(0);
 
                 //seta informacoes do usuario na entidade
-                
                 //essa tabela nao tem id automatico no banco, então precisa setar
                 //para nao pedir p/ usuario no formulario e correr o risco de repetição
                 //use a função do dao p/ calcular o id

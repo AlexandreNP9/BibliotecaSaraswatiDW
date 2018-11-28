@@ -105,5 +105,5 @@ public class ModuloSistema implements Serializable {
     public String toString() {
         return "Entidades.ModuloSistema[ idModuloSistema=" + idModuloSistema + " ]";
     }
-    
+
 }

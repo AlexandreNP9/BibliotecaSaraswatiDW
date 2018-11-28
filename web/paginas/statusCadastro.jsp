@@ -392,7 +392,6 @@
                                 <span class="form-control" disabled ><%=cat.getIdStatus()%></span>
                                 <% }%>
                                 <input class="form-control"  type="hidden" name="id" value="<%=cat.getIdStatus()%>"/>
-
                             </div>
                         </div>
                         <div class="col-lg-6">        

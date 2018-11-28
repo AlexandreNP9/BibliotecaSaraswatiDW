@@ -116,5 +116,5 @@ public class Emprestimo implements Serializable {
     public String toString() {
         return "Entidades.Emprestimo[ idEmprestimo=" + idEmprestimo + " ]";
     }
-    
+
 }

@@ -11,8 +11,8 @@
         java.text.NumberFormat" %>
 <%
     Locale ptBr = new Locale("pt", "BR");
-    NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);  
-    
+    NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);
+
     DAOEmprestimo dao = new DAOEmprestimo();
     List<Emprestimo> emprestimos = dao.listInOrderNome();
 %>
@@ -70,12 +70,9 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nome da emprestimo" style="width: 170px;">Nome</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Ano da emprestimo" style="width: 170px;">Ano</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Quantidade da emprestimo" style="width: 170px;">Quantidade</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Observações da emprestimo" style="width: 170px;">Observações</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Data da emprestimo" style="width: 170px;">Data (dd/MM/yyyy)</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Usuario da emprestimo" style="width: 147px;">Usuário</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra da emprestimo" style="width: 147px;">Obra</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Usuario da emprestimo" style="width: 147px;">Tipo de Emprestimo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,12 +80,9 @@
                                             for (Emprestimo p : emprestimos) {
                                         %>
                                         <tr>
-                                            <td><%=p.getNomeEmprestimo()%></td>
-                                            <td><%=p.getAnoEmprestimo()%></td>
-                                            <td><%=p.getQuantidadeEmprestimo()%></td>
-                                            <td><%=p.getObservacoesEmprestimo()%></td>
-                                            <td><%=p.getObraIdObra().getNomeObra()%></td>
-                                            <td><%=p.getTipoemprestimoidusuario().getNomeusuario()%></td>
+                                            <td><%=p.getUsuarioIdUsuario()%></td>
+                                            <td><%=p.getObraIdObra()%></td>
+                                            <td><%=p.getData()%></td>
                                         </tr>
                                         <%}%>
 

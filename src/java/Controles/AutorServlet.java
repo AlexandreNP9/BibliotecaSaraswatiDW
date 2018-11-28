@@ -26,8 +26,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "AutorServlet", urlPatterns = {"/autor"})
 public class AutorServlet extends HttpServlet {
-    
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,7 +45,7 @@ public class AutorServlet extends HttpServlet {
             System.out.println("oi0");
             if (!request.getParameter("id").equals("null")) {
                 //editar
-                System.out.println("oi");//se vem o parametro de id é porque escolheu alguem p/ editar
+                System.out.println("oi1");//se vem o parametro de id é porque escolheu alguem p/ editar
                 int id = Integer.parseInt(request.getParameter("id"));
                 String sobrenome = request.getParameter("sobrenome");
                 String nome = request.getParameter("nome");
@@ -55,8 +55,8 @@ public class AutorServlet extends HttpServlet {
                 } catch (ParseException ex) {
                     Logger.getLogger(AutorServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                Date falecimento = null;
                 System.out.println("oi2");
+                Date falecimento = null;
                 try {
                     falecimento = sdf.parse(request.getParameter("falecimento"));
                 } catch (ParseException ex) {
@@ -74,13 +74,30 @@ public class AutorServlet extends HttpServlet {
                 autor.setImagemAutor(imagem);//novo nome
                 daoAutor.atualizar(autor);
             } else {
+                System.out.println("aaaaa");
                 //essa tabela está com o id automatico no banco, então não precisa setar aqui
+                String sobrenome = request.getParameter("sobrenome");
                 String nome = request.getParameter("nome");
+                String nascimento = request.getParameter("nascimento");
+                String falecimento = request.getParameter("falecimento");
+                String imagem = request.getParameter("imagem");
 
                 Autor autor = new Autor();
                 DAOAutor daoAutor = new DAOAutor();
 
+                autor.setSobrenomeAutor(sobrenome);
                 autor.setNomeAutor(nome);
+                try {
+                    autor.setNascimentoAutor(sdf.parse(nascimento));
+                } catch (ParseException ex) {
+                    Logger.getLogger(AutorServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    autor.setFalecimentoAutor(sdf.parse(falecimento));
+                } catch (ParseException ex) {
+                    Logger.getLogger(AutorServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                autor.setImagemAutor(imagem);
                 daoAutor.inserir(autor);
             }
             response.sendRedirect(request.getContextPath());

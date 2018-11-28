@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-<c:redirect url="index.jsp"></c:redirect>  
-        
+        <c:redirect url="index.jsp"></c:redirect>  
+
     </body>
 </html>
