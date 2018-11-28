@@ -1,27 +1,20 @@
 <%-- 
-    Document   : testeObra
+    Document   : testeEmprestimo
     Created on : 22/05/2018, 16:34:21
     Author     : Jaque
 --%>
 
-<%@page import="DAOs.DAOUsuarioExecutaObra"%>
-<%@page import="Entidades.UsuarioExecutaObra"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="DAOs.DAOUsuarioExecutaObra"%>
-<%@page import="Entidades.UsuarioExecutaObra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, 
-        DAOs.DAOObra,
-        Entidades.Obra, 
+        DAOs.DAOEmprestimo,
+        Entidades.Emprestimo, 
         java.text.NumberFormat" %>
 <%
     Locale ptBr = new Locale("pt", "BR");
     NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);  
     
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    
-    DAOUsuarioExecutaObra dao = new DAOUsuarioExecutaObra();
-    List<UsuarioExecutaObra> cat = dao.listInOrderNome();
+    DAOEmprestimo dao = new DAOEmprestimo();
+    List<Emprestimo> emprestimos = dao.listInOrderNome();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +27,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" type="image/png" href="fenix.png"/>
-        <title>Empréstimo</title>
+        <title>Lista de emprestimos</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -68,7 +61,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Empréstimo
+                    Emprestimos Cadastrados
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -77,19 +70,25 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Usuario da usuarioExecutaObra" style="width: 147px;">Usuário</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra da usuarioExecutaObra" style="width: 147px;">Obra</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Data da usuarioExecutaObra" style="width: 170px;">Data</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nome da emprestimo" style="width: 170px;">Nome</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Ano da emprestimo" style="width: 170px;">Ano</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Quantidade da emprestimo" style="width: 170px;">Quantidade</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Observações da emprestimo" style="width: 170px;">Observações</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra da emprestimo" style="width: 147px;">Obra</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Usuario da emprestimo" style="width: 147px;">Tipo de Emprestimo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <%
-                                            for (UsuarioExecutaObra p : cat) {
+                                            for (Emprestimo p : emprestimos) {
                                         %>
                                         <tr>
-                                            <td><%=p.getUsuario()%></td>
-                                            <td><%=p.getObra()%></td>
-                                            <td><%=p.getDiaExecucao()%></td>
+                                            <td><%=p.getNomeEmprestimo()%></td>
+                                            <td><%=p.getAnoEmprestimo()%></td>
+                                            <td><%=p.getQuantidadeEmprestimo()%></td>
+                                            <td><%=p.getObservacoesEmprestimo()%></td>
+                                            <td><%=p.getObraIdObra().getNomeObra()%></td>
+                                            <td><%=p.getTipoemprestimoidusuario().getNomeusuario()%></td>
                                         </tr>
                                         <%}%>
 

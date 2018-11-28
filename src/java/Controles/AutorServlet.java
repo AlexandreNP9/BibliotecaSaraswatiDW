@@ -42,9 +42,10 @@ public class AutorServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            System.out.println("oi0");
             if (!request.getParameter("id").equals("null")) {
                 //editar
-                //se vem o parametro de id é porque escolheu alguem p/ editar
+                System.out.println("oi");//se vem o parametro de id é porque escolheu alguem p/ editar
                 int id = Integer.parseInt(request.getParameter("id"));
                 String sobrenome = request.getParameter("sobrenome");
                 String nome = request.getParameter("nome");
@@ -55,13 +56,14 @@ public class AutorServlet extends HttpServlet {
                     Logger.getLogger(AutorServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 Date falecimento = null;
+                System.out.println("oi2");
                 try {
                     falecimento = sdf.parse(request.getParameter("falecimento"));
                 } catch (ParseException ex) {
                     Logger.getLogger(AutorServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 String imagem = request.getParameter("imagem");
-
+                System.out.println("oi3");
                 DAOAutor daoAutor = new DAOAutor();
 
                 Autor autor = daoAutor.listById(id).get(0);

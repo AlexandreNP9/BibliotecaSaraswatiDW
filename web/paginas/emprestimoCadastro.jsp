@@ -1,5 +1,5 @@
 <%-- 
-    Document   : obraCadastro
+    Document   : emprestimoCadastro
     Created on : 05/07/2018, 17:55:59
     Author     : Jaque
 --%>
@@ -379,17 +379,17 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Empréstimo</h1>
+                        <h1 class="page-header">Cadastro de Emprestimos</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-                <form method="post" action="${pageContext.request.contextPath}/usuarioExecutaObra" role="form">
-                    <div class="row">
+                <form method="post" action="${pageContext.request.contextPath}/emprestimo" role="form">
+                    <div>
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Usuário</label>
-                                <select class="form-control" name="idUsuario">
+                                <label>Usuario</label>
+                                <select class="form-control" name="usuario">
                                     <option value="">--SELECIONE--</option>
                                     <% for (Usuario c : cat) {%>
                                     <option value="<%=c.getIdUsuario()%>"><%=c.getNomeUsuario()%></option>
@@ -400,16 +400,16 @@
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Obra</label>
-                                <select class="form-control" name="idObra">
+                                <select class="form-control" name="obra">
                                     <option value="">--SELECIONE--</option>
                                     <% for (Obra c : catcat) {%>
                                     <option value="<%=c.getIdObra()%>"><%=c.getNomeObra()%></option>
                                     <% }%>
                                 </select>
                             </div>
-                        </div>
+                        </div>                        
                     </div>
-                    <div>
+                    <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Data</label>
@@ -423,15 +423,18 @@
                         </div>
                         <!-- /.col-lg-6 (nested) -->
                     </div>
-                </form>
-
-                <!-- /.row (nested) -->
             </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
+
+
+        </form>
+
+        <!-- /.row (nested) -->
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel -->
+</div>
+<!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
 </div>

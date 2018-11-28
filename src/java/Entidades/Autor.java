@@ -7,16 +7,12 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -54,11 +50,6 @@ public class Autor implements Serializable {
     private Date falecimentoAutor;
     @Column(name = "imagem_autor")
     private String imagemAutor;
-    @JoinTable(name = "autor_has_obra", joinColumns = {
-        @JoinColumn(name = "autor_id_autor", referencedColumnName = "id_autor")}, inverseJoinColumns = {
-        @JoinColumn(name = "obra_id_obra", referencedColumnName = "id_obra")})
-    @ManyToMany
-    private List<Obra> obraList;
 
     public Autor() {
     }
@@ -120,14 +111,6 @@ public class Autor implements Serializable {
 
     public void setImagemAutor(String imagemAutor) {
         this.imagemAutor = imagemAutor;
-    }
-
-    public List<Obra> getObraList() {
-        return obraList;
-    }
-
-    public void setObraList(List<Obra> obraList) {
-        this.obraList = obraList;
     }
 
     @Override

@@ -5,12 +5,12 @@
  */
 package Controles;
 
-import DAOs.DAOTipoObra;
+import DAOs.DAOUsuario;
+import DAOs.DAOEmprestimo;
 import DAOs.DAOObra;
-import DAOs.DAOStatus;
-import Entidades.TipoObra;
+import Entidades.Usuario;
+import Entidades.Emprestimo;
 import Entidades.Obra;
-import Entidades.Status;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
@@ -31,11 +31,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jaque
  */
-@WebServlet(name = "ObraServlet", urlPatterns = {"/obra"})
-public class UsuarioExecutaObraServlet extends HttpServlet {
+@WebServlet(name = "EmprestimoServlet", urlPatterns = {"/emprestimo"})
+public class EmprestimoServlet extends HttpServlet {
 
     Locale ptBr = new Locale("pt", "BR");
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,18 +49,15 @@ public class UsuarioExecutaObraServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String nomeObra = "";
-        Date anoObra = null;
+        int usuarioId = 0;
+        int obraId = 0;
+        Date dataEmprestimo = null;
         try {
-            anoObra = sdf.parse("0001");
+            dataEmprestimo = sdf.parse("01/01/0001");
         } catch (ParseException ex) {
-            Logger.getLogger(UsuarioExecutaObraServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmprestimoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int quantidadeObra = 0;
-        String observacoesObra = "";
         String submitCadastro = "";
-        int tipoObraId = 0;
-        int statusId = 0;
         
         try (PrintWriter out = response.getWriter()) {
             submitCadastro = request.getParameter("ok");
@@ -70,96 +67,86 @@ public class UsuarioExecutaObraServlet extends HttpServlet {
                 //se nao veio do submit é lista
                 //só precisa disso se a lista usa servlet, o primeiro jeito que vimos,
                 //se sua lista usa JSTL ou scriplet pode ir direto p/ cadastro, sem esse if
-                nomeObra = request.getParameter("nomeObra");
-                if (nomeObra == null || nomeObra.equals("")) {
-                    resultado = listaObrasCadastrados();
+                usuarioId = Integer.parseInt(request.getParameter("usuarioId"));
+                if (usuarioId == 0) {
+                    resultado = listaEmprestimosCadastrados();
                 } else {
-                    resultado = listaObraNome(nomeObra);
+                    resultado = listaEmprestimoNome(usuarioId);
                 }
             } else {
                 //parametros do form
                 //aqui pq se passar do if não serão nulos
                 
                 //tudo que vem do formulario é string, por isso aqui alguns precisam de conversão
-                tipoObraId = Integer.parseInt(request.getParameter("tipoObra"));
-                statusId = Integer.parseInt(request.getParameter("status"));
-                nomeObra = request.getParameter("nome");
+                usuarioId = Integer.parseInt(request.getParameter("usuario"));
+                obraId = Integer.parseInt(request.getParameter("obra"));
                 try {
-                    anoObra = sdf.parse(request.getParameter("ano"));
+                    dataEmprestimo = sdf.parse(request.getParameter("data"));
                 } catch (ParseException ex) {
-                    Logger.getLogger(UsuarioExecutaObraServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EmprestimoServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                quantidadeObra = Integer.valueOf(request.getParameter("quantidade"));
-                observacoesObra = request.getParameter("observacoes");
                 
+                DAOEmprestimo daoEmprestimo = new DAOEmprestimo();
+                DAOUsuario daoUsuario = new DAOUsuario();
                 DAOObra daoObra = new DAOObra();
-                DAOTipoObra daoTipoObra = new DAOTipoObra();
-                DAOStatus daoStatus = new DAOStatus();
-                Obra obra = new Obra();
+                Emprestimo emprestimo = new Emprestimo();
 
-                //busca a tipoObra do id selecionado no select do form
+                //busca a usuario do id selecionado no select do form
                 //busca com o listById para criar um objeto de entidade completo, 
-                //que é o parâmetro que o set de tipoObra pede
-                TipoObra tipoObra = daoTipoObra.listById(tipoObraId).get(0);
-                Status status = daoStatus.listById(statusId).get(0);
+                //que é o parâmetro que o set de usuario pede
+                Usuario usuario = daoUsuario.listById(usuarioId).get(0);
+                Obra obra = daoObra.listById(obraId).get(0);
 
-                //seta informacoes do obra na entidade
+                //seta informacoes do emprestimo na entidade
                 
                 //essa tabela nao tem id automatico no banco, então precisa setar
-                //para nao pedir p/ obra no formulario e correr o risco de repetição
+                //para nao pedir p/ emprestimo no formulario e correr o risco de repetição
                 //use a função do dao p/ calcular o id
-                obra.setIdObra(daoObra.autoIdObra());
-                obra.setNomeObra(nomeObra);
-                obra.setAnoObra(anoObra);
+                emprestimo.setIdEmprestimo(daoEmprestimo.autoIdEmprestimo());
+                emprestimo.setUsuarioIdUsuario(usuario);
+                emprestimo.setObraIdObra(obra);
+                emprestimo.setData(dataEmprestimo);
                 
-                obra.setQuantidadeObra(quantidadeObra);
-                obra.setObservacoesObra(observacoesObra);
-                //seta a tipoObra do obra, que vai gravar apenas o id como fk no obra  no banco
-                //porém, aqui é orientado a objeto, então o tipoObra é um objeto da entidade tipoObra
-                obra.setTipoobraidtipoObra(tipoObra);
-                obra.setStatusIdStatus(status);
-
-                //insere o obra no banco
-                daoObra.inserir(obra);
+                //seta a usuario do emprestimo, que vai gravar apenas o id como fk no emprestimo  no banco
+                //porém, aqui é orientado a objeto, então o usuario é um objeto da entidade usuario
+                
+                //insere o emprestimo no banco
+                daoEmprestimo.inserir(emprestimo);
                 //faz a busca p/ direcionar p/ uma lista atualizada
                 //só se sua lista usa servlet, se for com JSTL ou scriplet é só redirecionar
-                resultado = listaObrasCadastrados();
+                resultado = listaEmprestimosCadastrados();
             }
             request.getSession().setAttribute("resultado", resultado);
-            response.sendRedirect(request.getContextPath() + "/paginas/obra.jsp");
+            response.sendRedirect(request.getContextPath() + "/paginas/emprestimo.jsp");
         }
     }
 
-    protected String listaObraNome(String nomeObra) {
-        DAOObra obra = new DAOObra();
+    protected String listaEmprestimoNome(String nomeEmprestimo) {
+        DAOEmprestimo emprestimo = new DAOEmprestimo();
         String tabela = "";
-        List<Obra> lista = obra.listByNome(nomeObra);
-        for (Obra l : lista) {
+        List<Emprestimo> lista = emprestimo.listByNome(nomeEmprestimo);
+        for (Emprestimo l : lista) {
             tabela += "<tr>"
-                    + "<td>" + l.getNomeObra() + "</td>"
-                    + "<td>" + sdf.format(l.getAnoObra()) + "</td>"
-                    + "<td>" + l.getQuantidadeObra() + "</td>"
-                    + "<td>" + l.getObservacoesObra()+ "</td>"
-                    + "<td>" + l.getTipoobraidtipoObra().getNometipoObra()+ "</td>"
-                    + "<td>" + l.getStatusIdStatus().getNomeStatus()+ "</td>"
+                    + "<td>" + l.getIdEmprestimo()+ "</td>"
+                    + "<td>" + l.getUsuarioIdUsuario()+ "</td>"
+                    + "<td>" + l.getObraIdObra()+ "</td>"
+                    + "<td>" + sdf.format(l.getData()) + "</td>"
                     + "</tr>";
         }
 
         return tabela;
     }
 
-    protected String listaObrasCadastrados() {
-        DAOObra obra = new DAOObra();
+    protected String listaEmprestimosCadastrados() {
+        DAOEmprestimo emprestimo = new DAOEmprestimo();
         String tabela = "";
-        List<Obra> lista = obra.listInOrderNome();
-        for (Obra l : lista) {
+        List<Emprestimo> lista = emprestimo.listInOrderNome();
+        for (Emprestimo l : lista) {
             tabela += "<tr>"
-                    + "<td>" + l.getNomeObra() + "</td>"
-                    + "<td>" + sdf.format(l.getAnoObra()) + "</td>"
-                    + "<td>" + l.getQuantidadeObra() + "</td>"
-                    + "<td>" + l.getObservacoesObra()+ "</td>"
-                    + "<td>" + l.getTipoobraidtipoObra().getNometipoObra()+ "</td>"
-                    + "<td>" + l.getStatusIdStatus().getNomeStatus()+ "</td>"
+                    + "<td>" + l.getIdEmprestimo()+ "</td>"
+                    + "<td>" + l.getUsuarioIdUsuario()+ "</td>"
+                    + "<td>" + l.getObraIdObra()+ "</td>"
+                    + "<td>" + sdf.format(l.getData()) + "</td>"
                     + "</tr>";
         }
 

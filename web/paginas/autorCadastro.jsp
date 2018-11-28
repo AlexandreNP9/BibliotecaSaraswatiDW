@@ -382,6 +382,7 @@
                 </div>
                 <!-- /.row -->
                 <form method="post" action="${pageContext.request.contextPath}/autor" role="form">
+                    <input name="id" type="hidden" value="1"/>
                     <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">

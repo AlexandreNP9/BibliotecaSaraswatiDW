@@ -1,5 +1,5 @@
 <%-- 
-    Document   : obra2
+    Document   : emprestimo2
     Created on : 30/05/2018, 09:56:00
     Author     : Jaque
 --%>
@@ -12,8 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form method="post" action="${pageContext.request.contextPath}/usuarioExecutaObra">
-            <input type="text" name="idUsuario"/>
+        <form method="post" action="${pageContext.request.contextPath}/emprestimo">
+            <input type="text" name="nomeEmprestimo"/>
             <input type="submit" name="listar"/>
         </form>
     </body>

@@ -14,7 +14,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -50,16 +49,14 @@ public class Obra implements Serializable {
     private int quantidadeObra;
     @Column(name = "observacoes_obra")
     private String observacoesObra;
-    @ManyToMany(mappedBy = "obraList")
-    private List<Autor> autorList;
     @JoinColumn(name = "status_id_status", referencedColumnName = "id_status")
     @ManyToOne(optional = false)
     private Status statusIdStatus;
     @JoinColumn(name = "tipo_obra_id_tipoObra", referencedColumnName = "id_tipoObra")
     @ManyToOne(optional = false)
     private TipoObra tipoobraidtipoObra;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "obra")
-    private List<UsuarioExecutaObra> usuarioExecutaObraList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "obraIdObra")
+    private List<Emprestimo> emprestimoList;
 
     public Obra() {
     }
@@ -115,14 +112,6 @@ public class Obra implements Serializable {
         this.observacoesObra = observacoesObra;
     }
 
-    public List<Autor> getAutorList() {
-        return autorList;
-    }
-
-    public void setAutorList(List<Autor> autorList) {
-        this.autorList = autorList;
-    }
-
     public Status getStatusIdStatus() {
         return statusIdStatus;
     }
@@ -139,12 +128,12 @@ public class Obra implements Serializable {
         this.tipoobraidtipoObra = tipoobraidtipoObra;
     }
 
-    public List<UsuarioExecutaObra> getUsuarioExecutaObraList() {
-        return usuarioExecutaObraList;
+    public List<Emprestimo> getEmprestimoList() {
+        return emprestimoList;
     }
 
-    public void setUsuarioExecutaObraList(List<UsuarioExecutaObra> usuarioExecutaObraList) {
-        this.usuarioExecutaObraList = usuarioExecutaObraList;
+    public void setEmprestimoList(List<Emprestimo> emprestimoList) {
+        this.emprestimoList = emprestimoList;
     }
 
     @Override
