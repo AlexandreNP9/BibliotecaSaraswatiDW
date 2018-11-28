@@ -12,7 +12,7 @@
     <head> <link rel="stylesheet" href="../dist/css/sb-admin-2.css">
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Autor</title>
     </head>
     <body>
         <c:redirect url="index.jsp"></c:redirect>        

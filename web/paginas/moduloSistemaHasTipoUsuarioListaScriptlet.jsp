@@ -27,7 +27,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" type="image/png" href="fenix.png"/>
-        <title>Lista de usuarios</title>
+        <title>Lista de moduloSistemaHasTipoUsuario</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -61,7 +61,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Usuarios Cadastrados
+                    <a class="navbar-brand" href="../index.html">MENU PRINCIPAL</a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">

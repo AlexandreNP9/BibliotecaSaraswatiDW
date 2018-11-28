@@ -61,7 +61,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    TipoObra Cadastrados
+                    <a class="navbar-brand" href="../index.html">MENU PRINCIPAL</a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">

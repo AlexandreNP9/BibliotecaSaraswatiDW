@@ -4,7 +4,14 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 body {
-    background-color: blue;
+    background-color: #FFDEAD;
+}
+button{
+    background-color: #A0522D;
+    font-style: oblique;
+}
+ul{
+    font-family: cursive;
 }
 #wrapper {
     width: 100%;
@@ -12,7 +19,7 @@ body {
 #page-wrapper {
     padding: 0 15px;
     min-height: 568px;
-    background-color: white;
+    background-color: #BDB76B;
 }
 @media (min-width: 768px) {
     #page-wrapper {

@@ -22,7 +22,7 @@
 <html>
     <head> <link rel="stylesheet" href="../dist/css/sb-admin-2.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Cadastrar um Empréstimo</title>
         <!-- Bootstrap Core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -54,7 +54,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                    <a class="navbar-brand" href="../index.html">MENU PRINCIPAL</a>
                 </div>
                 <!-- /.navbar-header -->
 

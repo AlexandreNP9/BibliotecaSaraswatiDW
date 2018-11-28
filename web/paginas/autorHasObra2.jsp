@@ -9,7 +9,7 @@
 <html>
     <head> <link rel="stylesheet" href="../dist/css/sb-admin-2.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>AutorHasObra</title>
     </head>
     <body>
         <form method="post" action="${pageContext.request.contextPath}/autorHasObra">
