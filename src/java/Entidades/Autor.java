@@ -54,7 +54,7 @@ public class Autor implements Serializable {
     private Date falecimentoAutor;
     @Column(name = "imagem_autor")
     private String imagemAutor;
-    @JoinTable(name = "obra_has_autor", joinColumns = {
+    @JoinTable(name = "autor_has_obra", joinColumns = {
         @JoinColumn(name = "autor_id_autor", referencedColumnName = "id_autor")}, inverseJoinColumns = {
         @JoinColumn(name = "obra_id_obra", referencedColumnName = "id_obra")})
     @ManyToMany

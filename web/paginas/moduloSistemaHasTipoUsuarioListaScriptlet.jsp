@@ -1,12 +1,21 @@
 <%-- 
-    Document   : testeProduto
+    Document   : testeUsuario
     Created on : 22/05/2018, 16:34:21
-    Author     : alexandre
+    Author     : Jaque
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
+<%@page import="java.util.*, 
+        DAOs.DAOUsuario,
+        Entidades.Usuario, 
+        java.text.NumberFormat" %>
+<%
+    Locale ptBr = new Locale("pt", "BR");
+    NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);  
+    
+    DAOUsuario dao = new DAOUsuario();
+    List<Usuario> usuarios = dao.listInOrderNome();
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +27,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" type="image/png" href="fenix.png"/>
-        <title>Lista de Autors</title>
+        <title>Lista de usuarios</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -52,7 +61,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Produtos Cadastrados
+                    Usuarios Cadastrados
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -61,20 +70,24 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
-                                            <th>&nbsp;</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id da Autor" style="width: 170px;">Id</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Nome da Autor" style="width: 206px;">Autor</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Login do usuario" style="width: 170px;">Login</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nome do usuario" style="width: 170px;">Nome</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Senha do usuario" style="width: 170px;">Senha</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="TipoUsuario do usuario" style="width: 147px;">TipoUsuario</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <jsp:useBean id="dao" class="DAOs.DAOAutor"/>
-                                        <c:forEach var="cat" items="${dao.listInOrderNome()}"> 
-                                            <tr>
-                                                <td><a href="${pageContext.request.contextPath}/paginas/autorCadastro.jsp?id=${cat.getIdAutor()}">editar</a></td>
-                                                <td>${cat.getIdAutor()}</td>
-                                                <td>${cat.getNomeAutor()}</td>
-                                            </tr>
-                                        </c:forEach>
+                                        <%
+                                            for (Usuario p : usuarios) {
+                                        %>
+                                        <tr>
+                                            <td><%=p.getLoginUsuario()%></td>
+                                            <td><%=p.getNomeUsuario()%></td>
+                                            <td><%=p.getSenhaUsuario()%></td>
+                                            <td><%=p.getTipoUsuarioIdTipoUsuario().getNomeTipoUsuario()%></td>
+                                        </tr>
+                                        <%}%>
+
                                     </tbody>
                                 </table></div></div>
                         <!-- /.table-responsive -->

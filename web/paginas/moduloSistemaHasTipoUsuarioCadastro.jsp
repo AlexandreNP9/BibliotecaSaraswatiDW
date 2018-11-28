@@ -1,19 +1,20 @@
 <%-- 
-    Document   : produtoCadastro
+    Document   : usuarioCadastro
     Created on : 05/07/2018, 17:55:59
-    Author     : alexandre
+    Author     : Jaque
 --%>
+
+<%@page import="Entidades.ModuloSistema"%>
+<%@page import="DAOs.DAOModuloSistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, 
-        DAOs.DAOAutor ,
-        Entidades.Autor" %>
+        DAOs.DAOTipoUsuario ,
+        Entidades.TipoUsuario" %>
 <%
-    DAOAutor dao = new DAOAutor();
-    Autor cat = new Autor();
-    String editando = request.getParameter("id");
-    if (editando != null) {
-        cat = dao.listById(Integer.parseInt(request.getParameter("id"))).get(0);
-    }
+    DAOModuloSistema dao = new DAOModuloSistema();
+    List<ModuloSistema> cat = dao.listInOrderNome();
+    DAOTipoUsuario daodao = new DAOTipoUsuario();
+    List<TipoUsuario> catcat = daodao.listInOrderNome();
 %>
 <!DOCTYPE html>
 <html>
@@ -376,55 +377,35 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Cadastro de Produtos</h1>
+                        <h1 class="page-header">Cadastro de Usuarios</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-                <form method="post" action="${pageContext.request.contextPath}/autor" role="form">
+                <form method="post" action="${pageContext.request.contextPath}/moduloSistema" role="form">
                     <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>ID</label>
-                                <% if (editando == null) {%>
-                                <input class="form-control"  type="text" disabled/>
-                                <% } else {%>
-                                <span class="form-control" disabled ><%=cat.getIdAutor()%></span>
-                                <% }%>
-                                <input class="form-control"  type="hidden" name="id" value="<%=cat.getIdAutor()%>"/>
-
+                                <label>ModuloSistema</label>
+                                <select class="form-control" name="moduloSistema">
+                                    <option value="">--SELECIONE--</option>
+                                    <% for (ModuloSistema c : cat) {%>
+                                    <option value="<%=c.getIdModuloSistema()%>"><%=c.getNomeModuloSistema()%></option>
+                                    <% }%>
+                                </select>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Sobrenome</label>
-                                <input class="form-control" type="text" name="sobrenome" value="<%=editando != null ? cat.getSobrenomeAutor() : ""%>"/>
+                                <label>TipoUsuario</label>
+                                <select class="form-control" name="tipoUsuario">
+                                    <option value="">--SELECIONE--</option>
+                                    <% for (TipoUsuario c : catcat) {%>
+                                    <option value="<%=c.getIdTipoUsuario()%>"><%=c.getNomeTipoUsuario()%></option>
+                                    <% }%>
+                                </select>
                             </div>
-                        </div>
-                        <div class="col-lg-6">        
-                            <div class="form-group">
-                                <label>Nome</label>
-                                <input class="form-control" type="text" name="nome" value="<%=editando != null ? cat.getNomeAutor() : ""%>"/>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">        
-                            <div class="form-group">
-                                <label>Nascimento</label>
-                                <input class="form-control" type="text" name="nascimento" value="<%=editando != null ? cat.getNascimentoAutor() : ""%>"/>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">        
-                            <div class="form-group">
-                                <label>Falecimento</label>
-                                <input class="form-control" type="text" name="falecimento" value="<%=editando != null ? cat.getFalecimentoAutor() : ""%>"/>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">        
-                            <div class="form-group">
-                                <label>Imagem</label>
-                                <input class="form-control" type="text" name="imagem" value="<%=editando != null ? cat.getImagemAutor() : ""%>"/>
-                            </div>
-                        </div>
+                        </div>                        
                     </div>
 
                     <div class="row">

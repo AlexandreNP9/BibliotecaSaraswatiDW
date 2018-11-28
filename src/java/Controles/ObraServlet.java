@@ -52,7 +52,7 @@ public class ObraServlet extends HttpServlet {
         String nomeObra = "";
         Date anoObra = null;
         try {
-            anoObra = sdf.parse("0000");
+            anoObra = sdf.parse("0001");
         } catch (ParseException ex) {
             Logger.getLogger(ObraServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -89,7 +89,7 @@ public class ObraServlet extends HttpServlet {
                 } catch (ParseException ex) {
                     Logger.getLogger(ObraServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                quantidadeObra = Integer.valueOf(request.getParameter("quantidadeObra"));
+                quantidadeObra = Integer.valueOf(request.getParameter("quantidade"));
                 observacoesObra = request.getParameter("observacoes");
                 
                 DAOObra daoObra = new DAOObra();

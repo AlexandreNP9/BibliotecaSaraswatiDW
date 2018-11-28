@@ -1,19 +1,20 @@
 <%-- 
-    Document   : produtoCadastro
+    Document   : autorHasObraCadastro
     Created on : 05/07/2018, 17:55:59
-    Author     : alexandre
+    Author     : Jaque
 --%>
+
+<%@page import="Entidades.Obra"%>
+<%@page import="DAOs.DAOObra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, 
         DAOs.DAOAutor ,
         Entidades.Autor" %>
 <%
     DAOAutor dao = new DAOAutor();
-    Autor cat = new Autor();
-    String editando = request.getParameter("id");
-    if (editando != null) {
-        cat = dao.listById(Integer.parseInt(request.getParameter("id"))).get(0);
-    }
+    List<Autor> cat = dao.listInOrderNome();
+    DAOObra daodao = new DAOObra();
+    List<Obra> catcat = daodao.listInOrderNome();
 %>
 <!DOCTYPE html>
 <html>
@@ -376,55 +377,36 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Cadastro de Produtos</h1>
+                        <h1 class="page-header">Cadastro de AutorHasObras</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-                <form method="post" action="${pageContext.request.contextPath}/autor" role="form">
+                <form method="post" action="${pageContext.request.contextPath}/autorHasObra" role="form">
                     <div class="row">
+                        
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>ID</label>
-                                <% if (editando == null) {%>
-                                <input class="form-control"  type="text" disabled/>
-                                <% } else {%>
-                                <span class="form-control" disabled ><%=cat.getIdAutor()%></span>
-                                <% }%>
-                                <input class="form-control"  type="hidden" name="id" value="<%=cat.getIdAutor()%>"/>
-
+                                <label>Autor</label>
+                                <select class="form-control" name="autor">
+                                    <option value="">--SELECIONE--</option>
+                                    <% for (Autor c : cat) {%>
+                                    <option value="<%=c.getIdAutor()%>"><%=c.getSobrenomeAutor() + ", " + c.getNomeAutor()%></option>
+                                    <% }%>
+                                </select>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Sobrenome</label>
-                                <input class="form-control" type="text" name="sobrenome" value="<%=editando != null ? cat.getSobrenomeAutor() : ""%>"/>
+                                <label>Obra</label>
+                                <select class="form-control" name="obra">
+                                    <option value="">--SELECIONE--</option>
+                                    <% for (Obra c : catcat) {%>
+                                    <option value="<%=c.getIdObra()%>"><%=c.getNomeObra()%></option>
+                                    <% }%>
+                                </select>
                             </div>
-                        </div>
-                        <div class="col-lg-6">        
-                            <div class="form-group">
-                                <label>Nome</label>
-                                <input class="form-control" type="text" name="nome" value="<%=editando != null ? cat.getNomeAutor() : ""%>"/>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">        
-                            <div class="form-group">
-                                <label>Nascimento</label>
-                                <input class="form-control" type="text" name="nascimento" value="<%=editando != null ? cat.getNascimentoAutor() : ""%>"/>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">        
-                            <div class="form-group">
-                                <label>Falecimento</label>
-                                <input class="form-control" type="text" name="falecimento" value="<%=editando != null ? cat.getFalecimentoAutor() : ""%>"/>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">        
-                            <div class="form-group">
-                                <label>Imagem</label>
-                                <input class="form-control" type="text" name="imagem" value="<%=editando != null ? cat.getImagemAutor() : ""%>"/>
-                            </div>
-                        </div>
+                        </div>                        
                     </div>
 
                     <div class="row">
