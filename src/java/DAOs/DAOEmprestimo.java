@@ -28,7 +28,7 @@ public class DAOEmprestimo extends DAOGenerico<Emprestimo> {
     }
 
     public List<Emprestimo> listInOrderNome() {
-        return em.createQuery("SELECT e FROM Emprestimo e ORDER BY e.nomeEmprestimo").getResultList();
+        return em.createQuery("SELECT e FROM Emprestimo e ORDER BY e.idEmprestimo").getResultList();
     }
 
     public List<Emprestimo> listInOrderId() {
