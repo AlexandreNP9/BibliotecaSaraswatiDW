@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -34,8 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ObraServlet extends HttpServlet {
 
     Locale ptBr = new Locale("pt", "BR");
-    NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,13 +50,18 @@ public class ObraServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String nomeObra = "";
-        String anoObra = "";
-        String quantidadeObra = "";
+        Date anoObra = null;
+        try {
+            anoObra = sdf.parse("0000");
+        } catch (ParseException ex) {
+            Logger.getLogger(ObraServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int quantidadeObra = 0;
         String observacoesObra = "";
         String submitCadastro = "";
         int tipoObraId = 0;
         int statusId = 0;
-
+        
         try (PrintWriter out = response.getWriter()) {
             submitCadastro = request.getParameter("ok");
 
@@ -79,10 +84,14 @@ public class ObraServlet extends HttpServlet {
                 tipoObraId = Integer.parseInt(request.getParameter("tipoObra"));
                 statusId = Integer.parseInt(request.getParameter("status"));
                 nomeObra = request.getParameter("nome");
-                String loginObra = request.getParameter("login");
-                String senhaObra = request.getParameter("senha");
+                try {
+                    anoObra = sdf.parse(request.getParameter("ano"));
+                } catch (ParseException ex) {
+                    Logger.getLogger(ObraServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                quantidadeObra = Integer.valueOf(request.getParameter("quantidadeObra"));
+                observacoesObra = request.getParameter("observacoes");
                 
-
                 DAOObra daoObra = new DAOObra();
                 DAOTipoObra daoTipoObra = new DAOTipoObra();
                 DAOStatus daoStatus = new DAOStatus();
@@ -101,12 +110,9 @@ public class ObraServlet extends HttpServlet {
                 //use a função do dao p/ calcular o id
                 obra.setIdObra(daoObra.autoIdObra());
                 obra.setNomeObra(nomeObra);
-                try {
-                    obra.setAnoObra(sdf.parse(anoObra));
-                } catch (ParseException ex) {
-                    Logger.getLogger(ObraServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                obra.setQuantidadeObra(Integer.parseInt(quantidadeObra));
+                obra.setAnoObra(anoObra);
+                
+                obra.setQuantidadeObra(quantidadeObra);
                 obra.setObservacoesObra(observacoesObra);
                 //seta a tipoObra do obra, que vai gravar apenas o id como fk no obra  no banco
                 //porém, aqui é orientado a objeto, então o tipoObra é um objeto da entidade tipoObra
@@ -131,7 +137,7 @@ public class ObraServlet extends HttpServlet {
         for (Obra l : lista) {
             tabela += "<tr>"
                     + "<td>" + l.getNomeObra() + "</td>"
-                    + "<td>" + l.getAnoObra() + "</td>"
+                    + "<td>" + sdf.format(l.getAnoObra()) + "</td>"
                     + "<td>" + l.getQuantidadeObra() + "</td>"
                     + "<td>" + l.getObservacoesObra()+ "</td>"
                     + "<td>" + l.getTipoobraidtipoObra().getNometipoObra()+ "</td>"
@@ -149,7 +155,7 @@ public class ObraServlet extends HttpServlet {
         for (Obra l : lista) {
             tabela += "<tr>"
                     + "<td>" + l.getNomeObra() + "</td>"
-                    + "<td>" + l.getAnoObra() + "</td>"
+                    + "<td>" + sdf.format(l.getAnoObra()) + "</td>"
                     + "<td>" + l.getQuantidadeObra() + "</td>"
                     + "<td>" + l.getObservacoesObra()+ "</td>"
                     + "<td>" + l.getTipoobraidtipoObra().getNometipoObra()+ "</td>"

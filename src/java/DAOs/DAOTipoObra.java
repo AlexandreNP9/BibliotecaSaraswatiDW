@@ -20,15 +20,15 @@ public class DAOTipoObra extends DAOGenerico<TipoObra> {
     }
 
     public List<TipoObra> listByNome(String nome) {
-        return em.createQuery("SELECT e FROM TipoObra e WHERE e.nomeTipoObra LIKE :nome").setParameter("nome", "%" + nome + "%").getResultList();
+        return em.createQuery("SELECT e FROM TipoObra e WHERE e.nometipoObra LIKE :nome").setParameter("nome", "%" + nome + "%").getResultList();
     }
 
     public List<TipoObra> listById(int id) {
-        return em.createQuery("SELECT e FROM TipoObra e WHERE e.idTipoObra = :id").setParameter("id", id).getResultList();
+        return em.createQuery("SELECT e FROM TipoObra e WHERE e.idtipoObra = :id").setParameter("id", id).getResultList();
     }
 
     public List<TipoObra> listInOrderNome() {
-        return em.createQuery("SELECT e FROM TipoObra e ORDER BY e.nomeTipoObra").getResultList();
+        return em.createQuery("SELECT e FROM TipoObra e ORDER BY e.nometipoObra").getResultList();
     }
 
     public List<TipoObra> listInOrderId() {
