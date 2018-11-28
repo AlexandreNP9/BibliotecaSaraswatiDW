@@ -9,6 +9,11 @@ import DAOs.DAOAutor;
 import Entidades.Autor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +26,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "AutorServlet", urlPatterns = {"/autor"})
 public class AutorServlet extends HttpServlet {
+    
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,12 +46,30 @@ public class AutorServlet extends HttpServlet {
                 //editar
                 //se vem o parametro de id é porque escolheu alguem p/ editar
                 int id = Integer.parseInt(request.getParameter("id"));
+                String sobrenome = request.getParameter("sobrenome");
                 String nome = request.getParameter("nome");
+                Date nascimento = null;
+                try {
+                    nascimento = sdf.parse(request.getParameter("nascimento"));
+                } catch (ParseException ex) {
+                    Logger.getLogger(AutorServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Date falecimento = null;
+                try {
+                    falecimento = sdf.parse(request.getParameter("falecimento"));
+                } catch (ParseException ex) {
+                    Logger.getLogger(AutorServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                String imagem = request.getParameter("imagem");
 
                 DAOAutor daoAutor = new DAOAutor();
 
                 Autor autor = daoAutor.listById(id).get(0);
+                autor.setSobrenomeAutor(sobrenome);//novo nome
                 autor.setNomeAutor(nome);//novo nome
+                autor.setNascimentoAutor(nascimento);//novo nome
+                autor.setFalecimentoAutor(falecimento);//novo nome
+                autor.setImagemAutor(imagem);//novo nome
                 daoAutor.atualizar(autor);
             } else {
                 //essa tabela está com o id automatico no banco, então não precisa setar aqui

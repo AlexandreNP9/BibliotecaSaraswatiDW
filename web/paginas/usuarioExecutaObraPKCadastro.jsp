@@ -1,19 +1,22 @@
 <%-- 
-    Document   : produtoCadastro
+    Document   : obraCadastro
     Created on : 05/07/2018, 17:55:59
-    Author     : alexandre
+    Author     : Jaque
 --%>
+
+<%@page import="Entidades.Usuario"%>
+<%@page import="DAOs.DAOUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, 
-        DAOs.DAOAutor ,
-        Entidades.Autor" %>
+        DAOs.DAOObra ,
+        Entidades.Obra" %>
 <%
-    DAOAutor dao = new DAOAutor();
-    Autor cat = new Autor();
-    String editando = request.getParameter("id");
-    if (editando != null) {
-        cat = dao.listById(Integer.parseInt(request.getParameter("id"))).get(0);
-    }
+    DAOUsuario dao = new DAOUsuario();
+    List<Usuario> cat = dao.listInOrderNome();
+%>
+<%
+    DAOObra daodao = new DAOObra();
+    List<Obra> catcat = daodao.listInOrderNome();
 %>
 <!DOCTYPE html>
 <html>
@@ -376,49 +379,44 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Cadastro de Autors</h1>
+                        <h1 class="page-header">Empréstimo</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-                <form method="post" action="${pageContext.request.contextPath}/autor" role="form">
+                <form method="post" action="${pageContext.request.contextPath}/usuarioExecutaObra" role="form">
                     <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Sobrenome</label>
-                                <input class="form-control" type="text" name="sobrenome" value="<%=editando != null ? cat.getSobrenomeAutor() : ""%>"/>
+                                <label>Usuário</label>
+                                <select class="form-control" name="idUsuario">
+                                    <option value="">--SELECIONE--</option>
+                                    <% for (Usuario c : cat) {%>
+                                    <option value="<%=c.getIdUsuario()%>"><%=c.getNomeUsuario()%></option>
+                                    <% }%>
+                                </select>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Nome</label>
-                                <input class="form-control" type="text" name="nome" value="<%=editando != null ? cat.getNomeAutor() : ""%>"/>
+                                <label>Obra</label>
+                                <select class="form-control" name="idObra">
+                                    <option value="">--SELECIONE--</option>
+                                    <% for (Obra c : catcat) {%>
+                                    <option value="<%=c.getIdObra()%>"><%=c.getNomeObra()%></option>
+                                    <% }%>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div>
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Nascimento</label>
-                                <input class="form-control" type="text" name="nascimento" value="<%=editando != null ? cat.getNascimentoAutor() : ""%>"/>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">        
-                            <div class="form-group">
-                                <label>Falecimento</label>
-                                <input class="form-control" type="text" name="falecimento" value="<%=editando != null ? cat.getFalecimentoAutor() : ""%>"/>
+                                <label>Data</label>
+                                <input class="form-control" type="text" name="data" />
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">        
-                            <div class="form-group">
-                                <label>Imagem</label>
-                                <input class="form-control" type="text" name="imagem" value="<%=editando != null ? cat.getImagemAutor() : ""%>"/>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="row">
                         <div class="col-lg-12">        
                             <button type="submit" class="btn btn-default" value="1" name="ok">Gravar</button>
