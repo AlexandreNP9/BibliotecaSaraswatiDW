@@ -56,7 +56,7 @@ public class StatusServlet extends HttpServlet {
                 status.setNomeStatus(nome);
                 daoStatus.inserir(status);
             }
-            response.sendRedirect(request.getContextPath() + "/paginas/statusistaScriptlet.jsp");
+            response.sendRedirect(request.getContextPath() + "/paginas/statusListaScriptlet.jsp");
         }
 
     }

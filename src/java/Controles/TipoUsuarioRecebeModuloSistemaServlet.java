@@ -5,14 +5,15 @@
  */
 package Controles;
 
-import DAOs.DAOAutor;
-import DAOs.DAOAutorPublicaObra;
+import DAOs.DAOTipoObra;
 import DAOs.DAOObra;
-import Entidades.Autor;
-import Entidades.AutorPublicaObra;
+import DAOs.DAOStatus;
+import Entidades.TipoObra;
 import Entidades.Obra;
+import Entidades.Status;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,11 +31,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jaque
  */
-@WebServlet(name = "AutorPublicaObraServlet", urlPatterns = {"/autorPublicaObra"})
-public class AutorPublicaObraServlet extends HttpServlet {
+@WebServlet(name = "ObraServlet", urlPatterns = {"/obra"})
+public class TipoUsuarioRecebeModuloSistemaServlet extends HttpServlet {
 
     Locale ptBr = new Locale("pt", "BR");
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,16 +49,18 @@ public class AutorPublicaObraServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String local = "";
-        String submitCadastro = "";
-        Date data = null;
+        String nomeObra = "";
+        Date anoObra = null;
         try {
-            data = sdf.parse("01/01/0001");
+            anoObra = sdf.parse("0001");
         } catch (ParseException ex) {
-            Logger.getLogger(AutorPublicaObraServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoUsuarioRecebeModuloSistemaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int obraId = 0;
-        int autorId = 0;
+        int quantidadeObra = 0;
+        String observacoesObra = "";
+        String submitCadastro = "";
+        int tipoObraId = 0;
+        int statusId = 0;
 
         try (PrintWriter out = response.getWriter()) {
             submitCadastro = request.getParameter("ok");
@@ -67,89 +70,95 @@ public class AutorPublicaObraServlet extends HttpServlet {
                 //se nao veio do submit é lista
                 //só precisa disso se a lista usa servlet, o primeiro jeito que vimos,
                 //se sua lista usa JSTL ou scriplet pode ir direto p/ cadastro, sem esse if
-                local = request.getParameter("local");
-                if (local == null || local.equals("")) {
-                    resultado = listaAutoresPublicamObrasCadastrados();
+                nomeObra = request.getParameter("nomeObra");
+                if (nomeObra == null || nomeObra.equals("")) {
+                    resultado = listaObrasCadastrados();
                 } else {
-                    resultado = listaAutorPublicaObraNome(local);
+                    resultado = listaObraNome(nomeObra);
                 }
             } else {
                 //parametros do form
                 //aqui pq se passar do if não serão nulos
 
                 //tudo que vem do formulario é string, por isso aqui alguns precisam de conversão
-                local = request.getParameter("local");
+                tipoObraId = Integer.parseInt(request.getParameter("tipoObra"));
+                statusId = Integer.parseInt(request.getParameter("status"));
+                nomeObra = request.getParameter("nome");
                 try {
-                    data = sdf.parse(request.getParameter("data"));
+                    anoObra = sdf.parse(request.getParameter("ano"));
                 } catch (ParseException ex) {
-                    Logger.getLogger(AutorPublicaObraServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TipoUsuarioRecebeModuloSistemaServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                obraId = Integer.parseInt(request.getParameter("obra"));
-                autorId = Integer.parseInt(request.getParameter("autor"));
-
-                DAOAutorPublicaObra daoAutorPublicaObra = new DAOAutorPublicaObra();
+                quantidadeObra = Integer.valueOf(request.getParameter("quantidade"));
+                observacoesObra = request.getParameter("observacoes");
 
                 DAOObra daoObra = new DAOObra();
-                DAOAutor daoAutor = new DAOAutor();
+                DAOTipoObra daoTipoObra = new DAOTipoObra();
+                DAOStatus daoStatus = new DAOStatus();
+                Obra obra = new Obra();
 
-                AutorPublicaObra autorPublicaObra = new AutorPublicaObra();
-
-//busca a tipoObra do id selecionado no select do form
+                //busca a tipoObra do id selecionado no select do form
                 //busca com o listById para criar um objeto de entidade completo, 
                 //que é o parâmetro que o set de tipoObra pede
-                Obra obra = daoObra.listById(obraId).get(0);
-                Autor autor = daoAutor.listById(obraId).get(0);
+                TipoObra tipoObra = daoTipoObra.listById(tipoObraId).get(0);
+                Status status = daoStatus.listById(statusId).get(0);
 
                 //seta informacoes do obra na entidade
                 //essa tabela nao tem id automatico no banco, então precisa setar
                 //para nao pedir p/ obra no formulario e correr o risco de repetição
                 //use a função do dao p/ calcular o id
-                autorPublicaObra.setIdAutorPublicaObra(daoAutorPublicaObra.autoIdAutorPublicaObra());
-                autorPublicaObra.setLocalAutorPublicaObra(local);
-                autorPublicaObra.setDataAutorPublicaObra(data);
+                obra.setIdObra(daoObra.autoIdObra());
+                obra.setNomeObra(nomeObra);
+                obra.setAnoObra(anoObra);
 
+                obra.setQuantidadeObra(quantidadeObra);
+                obra.setObservacoesObra(observacoesObra);
                 //seta a tipoObra do obra, que vai gravar apenas o id como fk no obra  no banco
                 //porém, aqui é orientado a objeto, então o tipoObra é um objeto da entidade tipoObra
-                autorPublicaObra.setObraIdObra(obra);
-                autorPublicaObra.setAutorIdAutor(autor);
+                obra.setTipoobraidtipoObra(tipoObra);
+                obra.setStatusIdStatus(status);
 
                 //insere o obra no banco
-                daoAutorPublicaObra.inserir(autorPublicaObra);
+                daoObra.inserir(obra);
                 //faz a busca p/ direcionar p/ uma lista atualizada
                 //só se sua lista usa servlet, se for com JSTL ou scriplet é só redirecionar
-                resultado = listaAutoresPublicamObrasCadastrados();
+                resultado = listaObrasCadastrados();
             }
             request.getSession().setAttribute("resultado", resultado);
-            response.sendRedirect(request.getContextPath() + "/paginas/autorPublicaObraListaScriptlet.jsp");
+            response.sendRedirect(request.getContextPath() + "/paginas/obraListaScriptlet.jsp");
         }
     }
 
-    protected String listaAutorPublicaObraNome(String local) {
-        DAOAutorPublicaObra autorPublicaObra = new DAOAutorPublicaObra();
+    protected String listaObraNome(String nomeObra) {
+        DAOObra obra = new DAOObra();
         String tabela = "";
-        List<AutorPublicaObra> lista = autorPublicaObra.listByNome(local);
-        for (AutorPublicaObra l : lista) {
+        List<Obra> lista = obra.listByNome(nomeObra);
+        for (Obra l : lista) {
             tabela += "<tr>"
-                    + "<td>" + l.getLocalAutorPublicaObra() + "</td>"
-                    + "<td>" + sdf.format(l.getDataAutorPublicaObra()) + "</td>"
-                    + "<td>" + l.getObraIdObra().getNomeObra() + "</td>"
-                    + "<td>" + l.getAutorIdAutor().getNomeAutor() + "</td>"
+                    + "<td>" + l.getNomeObra() + "</td>"
+                    + "<td>" + sdf.format(l.getAnoObra()) + "</td>"
+                    + "<td>" + l.getQuantidadeObra() + "</td>"
+                    + "<td>" + l.getObservacoesObra() + "</td>"
+                    + "<td>" + l.getTipoobraidtipoObra().getNometipoObra() + "</td>"
+                    + "<td>" + l.getStatusIdStatus().getNomeStatus() + "</td>"
                     + "</tr>";
         }
 
         return tabela;
     }
 
-    protected String listaAutoresPublicamObrasCadastrados() {
-        DAOAutorPublicaObra autorPublicaObra = new DAOAutorPublicaObra();
+    protected String listaObrasCadastrados() {
+        DAOObra obra = new DAOObra();
         String tabela = "";
-        List<AutorPublicaObra> lista = autorPublicaObra.listInOrderNome();
-        for (AutorPublicaObra l : lista) {
+        List<Obra> lista = obra.listInOrderNome();
+        for (Obra l : lista) {
             tabela += "<tr>"
-                    + "<td>" + l.getLocalAutorPublicaObra() + "</td>"
-                    + "<td>" + sdf.format(l.getDataAutorPublicaObra()) + "</td>"
-                    + "<td>" + l.getObraIdObra().getNomeObra() + "</td>"
-                    + "<td>" + l.getAutorIdAutor().getNomeAutor() + "</td>"
+                    + "<td>" + l.getNomeObra() + "</td>"
+                    + "<td>" + sdf.format(l.getAnoObra()) + "</td>"
+                    + "<td>" + l.getQuantidadeObra() + "</td>"
+                    + "<td>" + l.getObservacoesObra() + "</td>"
+                    + "<td>" + l.getTipoobraidtipoObra().getNometipoObra() + "</td>"
+                    + "<td>" + l.getStatusIdStatus().getNomeStatus() + "</td>"
                     + "</tr>";
         }
 
