@@ -98,7 +98,7 @@ public class UsuarioServlet extends HttpServlet {
                 resultado = listaUsuariosCadastrados();
             }
             request.getSession().setAttribute("resultado", resultado);
-            response.sendRedirect(request.getContextPath() + "/paginas/usuario.jsp");
+            response.sendRedirect(request.getContextPath() + "/paginas/usuarioListaScriptlet.jsp");
         }
     }
 

@@ -1,21 +1,20 @@
 <%-- 
-    Document   : testeAutorHasObra
+    Document   : testeAutorPublicaObra
     Created on : 22/05/2018, 16:34:21
     Author     : Jaque
 --%>
 
-<%@page import="Entidades.Autor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, 
-        DAOs.DAOAutorHasObra,
-        Entidades.AutorHasObra, 
+        DAOs.DAOAutorPublicaObra,
+        Entidades.AutorPublicaObra, 
         java.text.NumberFormat" %>
 <%
     Locale ptBr = new Locale("pt", "BR");
     NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);  
     
-    DAOAutorHasObra dao = new DAOAutorHasObra();
-    List<AutorHasObra> autorHasObras = dao.listInOrderNome();
+    DAOAutorPublicaObra dao = new DAOAutorPublicaObra();
+    List<AutorPublicaObra> autorPublicaObras = dao.listInOrderNome();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +27,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" type="image/png" href="fenix.png"/>
-        <title>Lista de autorHasObras</title>
+        <title>Lista de autorPublicaObras</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -62,7 +61,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                   <a class="navbar-brand" href="../index.html">MENU PRINCIPAL</a>
+                    <a class="navbar-brand" href="../index.html">MENU PRINCIPAL</a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -71,17 +70,21 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Autor do autorHasObra" style="width: 147px;">Autor</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra do autorHasObra" style="width: 147px;">Obra</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Local da autorPublicaObra" style="width: 170px;">Local</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Data da autorPublicaObra" style="width: 170px;">Data</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra da autorPublicaObra" style="width: 147px;">Obra</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Autor da autorPublicaObra" style="width: 147px;">Autor</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <%
-                                            for (Autor p : autorHasObras) {
+                                            for (AutorPublicaObra p : autorPublicaObras) {
                                         %>
                                         <tr>
-                                            <td><%=p.getNomeAutor()%></td>
-                                            <td><%=p.getObraList()%></td>
+                                            <td><%=p.getLocalAutorPublicaObra()%></td>
+                                            <td><%=p.getDataAutorPublicaObra()%></td>
+                                            <td><%=p.getObraIdObra().getNomeObra()%></td>
+                                            <td><%=p.getAutorIdAutor().getNomeAutor()%></td>
                                         </tr>
                                         <%}%>
 

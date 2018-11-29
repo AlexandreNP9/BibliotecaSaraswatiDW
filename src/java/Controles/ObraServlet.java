@@ -125,7 +125,7 @@ public class ObraServlet extends HttpServlet {
                 resultado = listaObrasCadastrados();
             }
             request.getSession().setAttribute("resultado", resultado);
-            response.sendRedirect(request.getContextPath() + "/paginas/obra.jsp");
+            response.sendRedirect(request.getContextPath() + "/paginas/obraListaScriptlet.jsp");
         }
     }
 

@@ -56,7 +56,7 @@ public class TipoUsuarioServlet extends HttpServlet {
                 tipoUsuario.setNomeTipoUsuario(nome);
                 daoTipoUsuario.inserir(tipoUsuario);
             }
-            response.sendRedirect(request.getContextPath());
+            response.sendRedirect(request.getContextPath() + "/paginas/tipoUsuarioListaScriptlet.jsp");
         }
 
     }

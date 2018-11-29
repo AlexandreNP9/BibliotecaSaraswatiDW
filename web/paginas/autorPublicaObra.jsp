@@ -1,5 +1,5 @@
 <%-- 
-    Document   : testeAutorHasObra
+    Document   : testeAutorPublicaObra
     Created on : 22/05/2018, 16:34:21
     Author     : Jaque
 --%>
@@ -16,7 +16,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" type="image/png" href="fenix.png"/>
-        <title>AutorHasObras</title>
+        <title>Lista de autorPublicaObras</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    AutorHasObras Cadastrados
+                    AutorPublicaObras Cadastrados
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -59,8 +59,10 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Autor do autorHasObra" style="width: 147px;">Autor</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra do autorHasObra" style="width: 147px;">Obra</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Local da autorPublicaObra" style="width: 170px;">Local</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Data da autorPublicaObra" style="width: 170px;">Data</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra da autorPublicaObra" style="width: 147px;">Obra</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Autor da autorPublicaObra" style="width: 147px;">Autor</th>
                                         </tr>
                                     </thead>
                                     <tbody>

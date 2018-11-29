@@ -57,6 +57,8 @@ public class Obra implements Serializable {
     private TipoObra tipoobraidtipoObra;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "obraIdObra")
     private List<Emprestimo> emprestimoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "obraIdObra")
+    private List<AutorPublicaObra> autorPublicaObraList;
 
     public Obra() {
     }
@@ -136,6 +138,14 @@ public class Obra implements Serializable {
         this.emprestimoList = emprestimoList;
     }
 
+    public List<AutorPublicaObra> getAutorPublicaObraList() {
+        return autorPublicaObraList;
+    }
+
+    public void setAutorPublicaObraList(List<AutorPublicaObra> autorPublicaObraList) {
+        this.autorPublicaObraList = autorPublicaObraList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -160,5 +170,5 @@ public class Obra implements Serializable {
     public String toString() {
         return "Entidades.Obra[ idObra=" + idObra + " ]";
     }
-
+    
 }

@@ -382,7 +382,7 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-                <form method="post" action="${pageContext.request.contextPath}/moduloSistema" role="form">
+                <form method="post" action="${pageContext.request.contextPath}/moduloSistemaHasTipoUsuario" role="form">
                     <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">

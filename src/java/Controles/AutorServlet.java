@@ -100,9 +100,10 @@ public class AutorServlet extends HttpServlet {
                 autor.setImagemAutor(imagem);
                 daoAutor.inserir(autor);
             }
-            response.sendRedirect(request.getContextPath());
+            response.sendRedirect(request.getContextPath() + "/paginas/autorListaScriptlet.jsp");
+            
         }
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

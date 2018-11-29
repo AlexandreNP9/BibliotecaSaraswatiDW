@@ -14,7 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -39,8 +38,8 @@ public class TipoUsuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "nome_tipo_usuario")
     private String nomeTipoUsuario;
-    @ManyToMany(mappedBy = "tipoUsuarioList")
-    private List<ModuloSistema> moduloSistemaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoUsuarioIdTipoUsuario")
+    private List<TipoUsuarioRecebeModuloSistema> tipoUsuarioRecebeModuloSistemaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoUsuarioIdTipoUsuario")
     private List<Usuario> usuarioList;
 
@@ -72,12 +71,12 @@ public class TipoUsuario implements Serializable {
         this.nomeTipoUsuario = nomeTipoUsuario;
     }
 
-    public List<ModuloSistema> getModuloSistemaList() {
-        return moduloSistemaList;
+    public List<TipoUsuarioRecebeModuloSistema> getTipoUsuarioRecebeModuloSistemaList() {
+        return tipoUsuarioRecebeModuloSistemaList;
     }
 
-    public void setModuloSistemaList(List<ModuloSistema> moduloSistemaList) {
-        this.moduloSistemaList = moduloSistemaList;
+    public void setTipoUsuarioRecebeModuloSistemaList(List<TipoUsuarioRecebeModuloSistema> tipoUsuarioRecebeModuloSistemaList) {
+        this.tipoUsuarioRecebeModuloSistemaList = tipoUsuarioRecebeModuloSistemaList;
     }
 
     public List<Usuario> getUsuarioList() {
@@ -112,5 +111,5 @@ public class TipoUsuario implements Serializable {
     public String toString() {
         return "Entidades.TipoUsuario[ idTipoUsuario=" + idTipoUsuario + " ]";
     }
-
+    
 }

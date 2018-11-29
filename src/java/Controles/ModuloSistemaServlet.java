@@ -58,7 +58,7 @@ public class ModuloSistemaServlet extends HttpServlet {
                 moduloSistema.setNomeModuloSistema(nome);
                 daoModuloSistema.inserir(moduloSistema);
             }
-            response.sendRedirect(request.getContextPath());
+            response.sendRedirect(request.getContextPath() + "/paginas/moduloSistemaListaScriptlet.jsp");
         }
 
     }

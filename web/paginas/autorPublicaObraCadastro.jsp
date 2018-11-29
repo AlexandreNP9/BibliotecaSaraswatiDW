@@ -1,26 +1,28 @@
 <%-- 
-    Document   : autorHasObraCadastro
+    Document   : autorPublicaObraCadastro
     Created on : 05/07/2018, 17:55:59
     Author     : Jaque
 --%>
 
-<%@page import="Entidades.Obra"%>
-<%@page import="DAOs.DAOObra"%>
+<%@page import="Entidades.Autor"%>
+<%@page import="DAOs.DAOAutor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, 
-        DAOs.DAOAutor ,
-        Entidades.Autor" %>
+        DAOs.DAOObra ,
+        Entidades.Obra" %>
 <%
-    DAOAutor dao = new DAOAutor();
-    List<Autor> cat = dao.listInOrderNome();
-    DAOObra daodao = new DAOObra();
-    List<Obra> catcat = daodao.listInOrderNome();
+    DAOObra dao = new DAOObra();
+    List<Obra> cat = dao.listInOrderNome();
+%>
+<%
+    DAOAutor daodao = new DAOAutor();
+    List<Autor> catcat = daodao.listInOrderNome();
 %>
 <!DOCTYPE html>
 <html>
     <head> <link rel="stylesheet" href="../dist/css/sb-admin-2.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Autor escreve obra</title>
+        <title>Cadastro de autorPublicaObras</title>
         <!-- Bootstrap Core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -377,32 +379,47 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Cadastro de AutorHasObras</h1>
+                        <h1 class="page-header">Cadastro de AutorPublicaObras</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-                <form method="post" action="${pageContext.request.contextPath}/autorHasObra" role="form">
+                <form method="post" action="${pageContext.request.contextPath}/autorPublicaObra" role="form">
                     <div class="row">
-
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Autor</label>
-                                <select class="form-control" name="autor">
+                                <label>Local</label>
+                                <input class="form-control" type="text" name="local" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">        
+                            <div class="form-group">
+                                <label>Data (dd/MM/yyyy)</label>
+                                <input class="form-control" type="text" name="data" />
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div>
+                        <div class="col-lg-6">        
+                            <div class="form-group">
+                                <label>Obra</label>
+                                <select class="form-control" name="obra">
                                     <option value="">--SELECIONE--</option>
-                                    <% for (Autor c : cat) {%>
-                                    <option value="<%=c.getIdAutor()%>"><%=c.getSobrenomeAutor() + ", " + c.getNomeAutor()%></option>
+                                    <% for (Obra c : cat) {%>
+                                    <option value="<%=c.getIdObra()%>"><%=c.getNomeObra()%></option>
                                     <% }%>
                                 </select>
                             </div>
                         </div>                        
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Obra</label>
-                                <select class="form-control" name="obra">
+                                <label>Autor</label>
+                                <select class="form-control" name="autor">
                                     <option value="">--SELECIONE--</option>
-                                    <% for (Obra c : catcat) {%>
-                                    <option value="<%=c.getIdObra()%>"><%=c.getNomeObra()%></option>
+                                    <% for (Autor c : catcat) {%>
+                                    <option value="<%=c.getIdAutor()%>"><%=c.getNomeAutor()%></option>
                                     <% }%>
                                 </select>
                             </div>

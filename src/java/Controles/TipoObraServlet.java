@@ -56,7 +56,7 @@ public class TipoObraServlet extends HttpServlet {
                 tipoObra.setNometipoObra(nome);
                 daoTipoObra.inserir(tipoObra);
             }
-            response.sendRedirect(request.getContextPath());
+            response.sendRedirect(request.getContextPath() + "/paginas/tipoObraistaScriptlet.jsp");
         }
 
     }
