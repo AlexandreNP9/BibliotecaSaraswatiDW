@@ -4,6 +4,7 @@
     Author     : Jaque
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, 
         DAOs.DAOObra,
@@ -12,6 +13,7 @@
 <%
     Locale ptBr = new Locale("pt", "BR");
     NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);  
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
     
     DAOObra dao = new DAOObra();
     List<Obra> obras = dao.listInOrderNome();
@@ -71,11 +73,11 @@
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nome da obra" style="width: 170px;">Nome</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Ano da obra" style="width: 170px;">Ano</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Ano da obra" style="width: 170px;">Ano de Publicação</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Quantidade da obra" style="width: 170px;">Quantidade</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Observações da obra" style="width: 170px;">Observações</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Status da obra" style="width: 147px;">Status</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="TipoObra da obra" style="width: 147px;">Tipo de Obra</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="TipoObra da obra" style="width: 147px;">Tipo da Obra</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -84,7 +86,7 @@
                                         %>
                                         <tr>
                                             <td><%=p.getNomeObra()%></td>
-                                            <td><%=p.getAnoObra()%></td>
+                                            <td><%=sdf.format(p.getAnoObra())%></td>
                                             <td><%=p.getQuantidadeObra()%></td>
                                             <td><%=p.getObservacoesObra()%></td>
                                             <td><%=p.getStatusIdStatus().getNomeStatus()%></td>

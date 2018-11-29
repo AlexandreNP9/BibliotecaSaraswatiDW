@@ -4,6 +4,7 @@
     Author     : Jaque
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, 
         DAOs.DAOAutorPublicaObra,
@@ -12,6 +13,7 @@
 <%
     Locale ptBr = new Locale("pt", "BR");
     NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);  
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     DAOAutorPublicaObra dao = new DAOAutorPublicaObra();
     List<AutorPublicaObra> autorPublicaObras = dao.listInOrderNome();
@@ -70,8 +72,8 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Local da autorPublicaObra" style="width: 170px;">Local</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Data da autorPublicaObra" style="width: 170px;">Data</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Local da autorPublicaObra" style="width: 170px;">Local da publicação</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Data da autorPublicaObra" style="width: 170px;">Data da publicação</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra da autorPublicaObra" style="width: 147px;">Obra</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Autor da autorPublicaObra" style="width: 147px;">Autor</th>
                                         </tr>
@@ -82,7 +84,7 @@
                                         %>
                                         <tr>
                                             <td><%=p.getLocalAutorPublicaObra()%></td>
-                                            <td><%=p.getDataAutorPublicaObra()%></td>
+                                            <td><%=sdf.format(p.getDataAutorPublicaObra())%></td>
                                             <td><%=p.getObraIdObra().getNomeObra()%></td>
                                             <td><%=p.getAutorIdAutor().getNomeAutor()%></td>
                                         </tr>

@@ -4,6 +4,7 @@
     Author     : Jaque
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, 
         DAOs.DAOEmprestimo,
@@ -12,6 +13,7 @@
 <%
     Locale ptBr = new Locale("pt", "BR");
     NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     DAOEmprestimo dao = new DAOEmprestimo();
     List<Emprestimo> emprestimos = dao.listInOrderNome();
@@ -80,9 +82,9 @@
                                             for (Emprestimo p : emprestimos) {
                                         %>
                                         <tr>
-                                            <td><%=p.getUsuarioIdUsuario()%></td>
-                                            <td><%=p.getObraIdObra()%></td>
-                                            <td><%=p.getData()%></td>
+                                            <td><%=p.getUsuarioIdUsuario().getNomeUsuario()%></td>
+                                            <td><%=p.getObraIdObra().getNomeObra()%></td>
+                                            <td><%=sdf.format(p.getData())%></td>
                                         </tr>
                                         <%}%>
 

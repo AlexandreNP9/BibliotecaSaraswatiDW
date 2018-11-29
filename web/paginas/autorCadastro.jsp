@@ -411,13 +411,13 @@
                     <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Nascimento</label>
+                                <label>Nascimento (yyyy)</label>
                                 <input class="form-control" type="text" name="nascimento" value="<%=editando != null ? cat.getNascimentoAutor() : ""%>"/>
                             </div>
                         </div>
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Falecimento</label>
+                                <label>Falecimento (yyyy)</label>
                                 <input class="form-control" type="text" name="falecimento" value="<%=editando != null ? cat.getFalecimentoAutor() : ""%>"/>
                             </div>
                         </div>

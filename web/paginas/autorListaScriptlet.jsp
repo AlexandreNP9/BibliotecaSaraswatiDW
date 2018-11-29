@@ -4,6 +4,7 @@
     Author     : alexandre
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, 
         DAOs.DAOAutor,
@@ -12,6 +13,7 @@
 <%
     Locale ptBr = new Locale("pt", "BR");
     NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 
     DAOAutor dao = new DAOAutor();
     List<Autor> autor = dao.listInOrderNome();
@@ -72,8 +74,8 @@
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Sobrenome do autor" style="width: 170px;">Sobrenome</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nome do autor" style="width: 170px;">Nome</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nascimento do autor" style="width: 170px;">Nascimento</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Falecimento do autor" style="width: 170px;">Falecimento</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nascimento do autor" style="width: 170px;">Nascimento (yyyy)</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Falecimento do autor" style="width: 170px;">Falecimento (yyyy)</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Imagem do autor" style="width: 170px;">Imagem</th>
                                         </tr>
                                     </thead>
@@ -84,8 +86,8 @@
                                         <tr>
                                             <td><%=p.getSobrenomeAutor()%></td>
                                             <td><%=p.getNomeAutor()%></td>
-                                            <td><%=p.getNascimentoAutor()%></td>
-                                            <td><%=p.getFalecimentoAutor()%></td>
+                                            <td><%=sdf.format(p.getNascimentoAutor())%></td>
+                                            <td><%=sdf.format(p.getFalecimentoAutor())%></td>
                                             <td><%=p.getImagemAutor()%></td>
                                         </tr>
                                         <%}%>

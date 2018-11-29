@@ -428,7 +428,7 @@
                         </div>                        
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Tipo de Obra</label>
+                                <label>Tipo da Obra</label>
                                 <select class="form-control" name="tipoObra">
                                     <option value="">--SELECIONE--</option>
                                     <% for (TipoObra c : catcat) {%>
