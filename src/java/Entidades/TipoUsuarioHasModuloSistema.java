@@ -23,17 +23,17 @@ import javax.persistence.Table;
  * @author alexa
  */
 @Entity
-@Table(name = "tipo_usuario_recebe_modulo_sistema")
+@Table(name = "tipo_usuario_has_modulo_sistema")
 @NamedQueries({
-    @NamedQuery(name = "TipoUsuarioRecebeModuloSistema.findAll", query = "SELECT t FROM TipoUsuarioRecebeModuloSistema t")})
-public class TipoUsuarioRecebeModuloSistema implements Serializable {
+    @NamedQuery(name = "TipoUsuarioHasModuloSistema.findAll", query = "SELECT t FROM TipoUsuarioHasModuloSistema t")})
+public class TipoUsuarioHasModuloSistema implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_tipo_usuario_recebe_modulo_sistema")
-    private Integer idTipoUsuarioRecebeModuloSistema;
+    @Column(name = "id_tipo_usuario_has_modulo_sistema")
+    private Integer idTipoUsuarioHasModuloSistema;
     @JoinColumn(name = "modulo_sistema_id_modulo_sistema", referencedColumnName = "id_modulo_sistema")
     @ManyToOne(optional = false)
     private ModuloSistema moduloSistemaIdModuloSistema;
@@ -41,19 +41,19 @@ public class TipoUsuarioRecebeModuloSistema implements Serializable {
     @ManyToOne(optional = false)
     private TipoUsuario tipoUsuarioIdTipoUsuario;
 
-    public TipoUsuarioRecebeModuloSistema() {
+    public TipoUsuarioHasModuloSistema() {
     }
 
-    public TipoUsuarioRecebeModuloSistema(Integer idTipoUsuarioRecebeModuloSistema) {
-        this.idTipoUsuarioRecebeModuloSistema = idTipoUsuarioRecebeModuloSistema;
+    public TipoUsuarioHasModuloSistema(Integer idTipoUsuarioHasModuloSistema) {
+        this.idTipoUsuarioHasModuloSistema = idTipoUsuarioHasModuloSistema;
     }
 
-    public Integer getIdTipoUsuarioRecebeModuloSistema() {
-        return idTipoUsuarioRecebeModuloSistema;
+    public Integer getIdTipoUsuarioHasModuloSistema() {
+        return idTipoUsuarioHasModuloSistema;
     }
 
-    public void setIdTipoUsuarioRecebeModuloSistema(Integer idTipoUsuarioRecebeModuloSistema) {
-        this.idTipoUsuarioRecebeModuloSistema = idTipoUsuarioRecebeModuloSistema;
+    public void setIdTipoUsuarioHasModuloSistema(Integer idTipoUsuarioHasModuloSistema) {
+        this.idTipoUsuarioHasModuloSistema = idTipoUsuarioHasModuloSistema;
     }
 
     public ModuloSistema getModuloSistemaIdModuloSistema() {
@@ -75,18 +75,18 @@ public class TipoUsuarioRecebeModuloSistema implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idTipoUsuarioRecebeModuloSistema != null ? idTipoUsuarioRecebeModuloSistema.hashCode() : 0);
+        hash += (idTipoUsuarioHasModuloSistema != null ? idTipoUsuarioHasModuloSistema.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoUsuarioRecebeModuloSistema)) {
+        if (!(object instanceof TipoUsuarioHasModuloSistema)) {
             return false;
         }
-        TipoUsuarioRecebeModuloSistema other = (TipoUsuarioRecebeModuloSistema) object;
-        if ((this.idTipoUsuarioRecebeModuloSistema == null && other.idTipoUsuarioRecebeModuloSistema != null) || (this.idTipoUsuarioRecebeModuloSistema != null && !this.idTipoUsuarioRecebeModuloSistema.equals(other.idTipoUsuarioRecebeModuloSistema))) {
+        TipoUsuarioHasModuloSistema other = (TipoUsuarioHasModuloSistema) object;
+        if ((this.idTipoUsuarioHasModuloSistema == null && other.idTipoUsuarioHasModuloSistema != null) || (this.idTipoUsuarioHasModuloSistema != null && !this.idTipoUsuarioHasModuloSistema.equals(other.idTipoUsuarioHasModuloSistema))) {
             return false;
         }
         return true;
@@ -94,7 +94,7 @@ public class TipoUsuarioRecebeModuloSistema implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidades.TipoUsuarioRecebeModuloSistema[ idTipoUsuarioRecebeModuloSistema=" + idTipoUsuarioRecebeModuloSistema + " ]";
+        return "Entidades.TipoUsuarioHasModuloSistema[ idTipoUsuarioHasModuloSistema=" + idTipoUsuarioHasModuloSistema + " ]";
     }
     
 }

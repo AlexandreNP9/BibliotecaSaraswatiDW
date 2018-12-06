@@ -39,7 +39,7 @@ public class ModuloSistema implements Serializable {
     @Column(name = "nome_modulo_sistema")
     private String nomeModuloSistema;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduloSistemaIdModuloSistema")
-    private List<TipoUsuarioRecebeModuloSistema> tipoUsuarioRecebeModuloSistemaList;
+    private List<TipoUsuarioHasModuloSistema> tipoUsuarioHasModuloSistemaList;
 
     public ModuloSistema() {
     }
@@ -69,12 +69,12 @@ public class ModuloSistema implements Serializable {
         this.nomeModuloSistema = nomeModuloSistema;
     }
 
-    public List<TipoUsuarioRecebeModuloSistema> getTipoUsuarioRecebeModuloSistemaList() {
-        return tipoUsuarioRecebeModuloSistemaList;
+    public List<TipoUsuarioHasModuloSistema> getTipoUsuarioHasModuloSistemaList() {
+        return tipoUsuarioHasModuloSistemaList;
     }
 
-    public void setTipoUsuarioRecebeModuloSistemaList(List<TipoUsuarioRecebeModuloSistema> tipoUsuarioRecebeModuloSistemaList) {
-        this.tipoUsuarioRecebeModuloSistemaList = tipoUsuarioRecebeModuloSistemaList;
+    public void setTipoUsuarioHasModuloSistemaList(List<TipoUsuarioHasModuloSistema> tipoUsuarioHasModuloSistemaList) {
+        this.tipoUsuarioHasModuloSistemaList = tipoUsuarioHasModuloSistemaList;
     }
 
     @Override

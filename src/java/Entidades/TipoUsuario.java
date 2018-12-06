@@ -39,7 +39,7 @@ public class TipoUsuario implements Serializable {
     @Column(name = "nome_tipo_usuario")
     private String nomeTipoUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoUsuarioIdTipoUsuario")
-    private List<TipoUsuarioRecebeModuloSistema> tipoUsuarioRecebeModuloSistemaList;
+    private List<TipoUsuarioHasModuloSistema> tipoUsuarioHasModuloSistemaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoUsuarioIdTipoUsuario")
     private List<Usuario> usuarioList;
 
@@ -71,12 +71,12 @@ public class TipoUsuario implements Serializable {
         this.nomeTipoUsuario = nomeTipoUsuario;
     }
 
-    public List<TipoUsuarioRecebeModuloSistema> getTipoUsuarioRecebeModuloSistemaList() {
-        return tipoUsuarioRecebeModuloSistemaList;
+    public List<TipoUsuarioHasModuloSistema> getTipoUsuarioHasModuloSistemaList() {
+        return tipoUsuarioHasModuloSistemaList;
     }
 
-    public void setTipoUsuarioRecebeModuloSistemaList(List<TipoUsuarioRecebeModuloSistema> tipoUsuarioRecebeModuloSistemaList) {
-        this.tipoUsuarioRecebeModuloSistemaList = tipoUsuarioRecebeModuloSistemaList;
+    public void setTipoUsuarioHasModuloSistemaList(List<TipoUsuarioHasModuloSistema> tipoUsuarioHasModuloSistemaList) {
+        this.tipoUsuarioHasModuloSistemaList = tipoUsuarioHasModuloSistemaList;
     }
 
     public List<Usuario> getUsuarioList() {
