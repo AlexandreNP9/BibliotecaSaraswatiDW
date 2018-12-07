@@ -94,7 +94,7 @@
                                             <td><%=p.getObservacoesObra()%></td>
                                             <td><%=p.getStatusIdStatus().getNomeStatus()%></td>
                                             <td><%=p.getTipoobraidtipoObra().getNometipoObra()%></td>
-                                            <td><a href="editarObra.jsp">EDITAR</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/obraCadastro.jsp?id=<%=p.getIdObra()%>">editar</a></td>
                                         </tr>
                                         <%}%>
 

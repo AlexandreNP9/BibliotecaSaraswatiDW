@@ -381,7 +381,7 @@
                     <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Id</label>
+                                <label>ID</label>
                                 <% if (editando == null) {%>
                                 <input class="form-control"  type="text" disabled/>
                                 <% } else {%>

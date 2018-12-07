@@ -88,7 +88,7 @@
                                             <td><%=p.getNomeUsuario()%></td>
                                             <td><%=p.getSenhaUsuario()%></td>
                                             <td><%=p.getTipoUsuarioIdTipoUsuario().getNomeTipoUsuario()%></td>
-                                            <td><a href="editarModuloSistemaHasTipoUsuario.jsp">EDITAR</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/moduloSistemaHasTIpoUsuarioCadastro.jsp?id=<%=p.getIdUsuario()%>">editar</a></td>
                                         </tr>
                                         <%}%>
 

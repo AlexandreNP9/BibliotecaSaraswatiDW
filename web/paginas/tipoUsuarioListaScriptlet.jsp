@@ -82,7 +82,7 @@
                                         <tr>
                                             <td><%=p.getIdTipoUsuario()%></td>
                                             <td><%=p.getNomeTipoUsuario()%></td>
-                                            <td><a href="tipoUsuarioCadastro.jsp">EDITAR</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/tipoUsuarioCadastro.jsp?id=<%=p.getIdTipoUsuario()%>">editar</a></td>
                                         </tr>
                                         <%}%>
 

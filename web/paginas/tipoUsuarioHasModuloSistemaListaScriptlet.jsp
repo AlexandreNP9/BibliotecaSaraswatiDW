@@ -85,7 +85,7 @@
                                             <td><%=p.getIdTipoUsuarioHasModuloSistema()%></td>
                                             <td><%=p.getTipoUsuarioIdTipoUsuario().getNomeTipoUsuario()%></td>
                                             <td><%=p.getModuloSistemaIdModuloSistema().getNomeModuloSistema()%></td>
-                                            <td><a href="tipoUsuarioHasModuloSistemaCadastro.jsp">EDITAR</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/tipoUsuarioHasModuloSistemaCadastro.jsp?id=<%=p.getIdTipoUsuarioHasModuloSistema()%>">editar</a></td>
                                         </tr>
                                         <%}%>
 

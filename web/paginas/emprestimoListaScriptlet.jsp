@@ -76,7 +76,6 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Usuario da emprestimo" style="width: 147px;">Usuário</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra da emprestimo" style="width: 147px;">Obra</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Data da emprestimo" style="width: 170px;">Data (dd/MM/yyyy)</th>
-                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Editar do emprestimo" style="width: 170px;">EDITAR</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -88,7 +87,6 @@
                                             <td><%=p.getUsuarioIdUsuario().getNomeUsuario()%></td>
                                             <td><%=p.getObraIdObra().getNomeObra()%></td>
                                             <td><%=sdf.format(p.getData())%></td>
-                                            <td><a href="editarEmprestimo.jsp">EDITAR</a></td>
                                         </tr>
                                         <%}%>
 

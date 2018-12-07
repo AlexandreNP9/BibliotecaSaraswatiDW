@@ -82,7 +82,7 @@
                                         <tr>
                                             <td><%=p.getIdStatus()%></td>
                                             <td><%=p.getNomeStatus()%></td>
-                                            <td><a href="editarStatus.jsp">EDITAR</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/statusCadastro.jsp?id=<%=p.getIdStatus()%>">editar</a></td>
                                         </tr>
                                         <%}%>
 

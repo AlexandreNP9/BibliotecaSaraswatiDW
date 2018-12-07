@@ -82,7 +82,7 @@
                                         <tr>
                                             <td><%=p.getIdtipoObra()%></td>
                                             <td><%=p.getNometipoObra()%></td>
-                                            <td><a href="editarTipoObra.jsp">EDITAR</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/tipoObraCadastro.jsp?id=<%=p.getIdtipoObra()%>">editar</a></td>
                                         </tr>
                                         <%}%>
 

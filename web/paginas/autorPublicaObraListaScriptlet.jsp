@@ -90,7 +90,7 @@
                                             <td><%=sdf.format(p.getDataAutorPublicaObra())%></td>
                                             <td><%=p.getObraIdObra().getNomeObra()%></td>
                                             <td><%=p.getAutorIdAutor().getNomeAutor()%></td>
-                                            <td><a href="editarAutorPublicaObra.jsp">EDITAR</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/autorPublicaObraCadastro.jsp?id=<%=p.getIdAutorPublicaObra()%>">editar</a></td>
                                         </tr>
                                         <%}%>
 
