@@ -41,3 +41,4 @@ $(function () {
         }
     }
 });
+$("span.pie").peity("pie");
