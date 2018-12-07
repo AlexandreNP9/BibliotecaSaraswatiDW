@@ -4,19 +4,34 @@
     Author     : Jaque
 --%>
 
-<%@page import="Entidades.Autor"%>
-<%@page import="DAOs.DAOAutor"%>
+<%@page import="Entidades.AutorPublicaObra"%>
+<%@page import="DAOs.DAOAutorPublicaObra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*, 
+        DAOs.DAOAutorPublicaObra ,
+        Entidades.AutorPublicaObra" %>
+<%
+    DAOAutorPublicaObra dao = new DAOAutorPublicaObra();
+    AutorPublicaObra cat = new AutorPublicaObra();
+    String editando = request.getParameter("id");
+    if (editando != null) {
+        cat = dao.listById(Integer.parseInt(request.getParameter("id"))).get(0);
+    }
+%>
+
 <%@page import="java.util.*, 
         DAOs.DAOObra ,
         Entidades.Obra" %>
 <%
-    DAOObra dao = new DAOObra();
-    List<Obra> cat = dao.listInOrderNome();
+    DAOObra daodao = new DAOObra();
+    List<Obra> catcat = daodao.listInOrderNome();
 %>
+<%@page import="java.util.*, 
+        DAOs.DAOAutor ,
+        Entidades.Autor" %>
 <%
-    DAOAutor daodao = new DAOAutor();
-    List<Autor> catcat = daodao.listInOrderNome();
+    DAOAutor daodaodao = new DAOAutor();
+    List<Autor> catcatcat = daodaodao.listInOrderNome();
 %>
 <!DOCTYPE html>
 <html>
@@ -383,6 +398,20 @@
                     <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
+                                <label>ID</label>
+                                <% if (editando == null) {%>
+                                <input class="form-control"  type="text" disabled/>
+                                <% } else {%>
+                                <span class="form-control" disabled ><%=cat.getIdAutorPublicaObra()%></span>
+                                <% }%>
+                                <input class="form-control"  type="hidden" name="id" value="<%=cat.getIdAutorPublicaObra()%>"/>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">        
+                            <div class="form-group">
                                 <label>Local</label>
                                 <input class="form-control" type="text" name="local" />
                             </div>
@@ -402,7 +431,7 @@
                                 <label>Obra</label>
                                 <select class="form-control" name="obra">
                                     <option value="">--SELECIONE--</option>
-                                    <% for (Obra c : cat) {%>
+                                    <% for (Obra c : catcat) {%>
                                     <option value="<%=c.getIdObra()%>"><%=c.getNomeObra()%></option>
                                     <% }%>
                                 </select>
@@ -413,7 +442,7 @@
                                 <label>Autor</label>
                                 <select class="form-control" name="autor">
                                     <option value="">--SELECIONE--</option>
-                                    <% for (Autor c : catcat) {%>
+                                    <% for (Autor c : catcatcat) {%>
                                     <option value="<%=c.getIdAutor()%>"><%=c.getNomeAutor()%></option>
                                     <% }%>
                                 </select>

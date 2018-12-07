@@ -4,17 +4,33 @@
     Author     : Jaque
 --%>
 
-<%@page import="Entidades.ModuloSistema"%>
-<%@page import="DAOs.DAOModuloSistema"%>
+<%@page import="Entidades.ModuloSistemaHasTipoUsuario"%>
+<%@page import="DAOs.DAOModuloSistemaHasTipoUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, 
-        DAOs.DAOTipoUsuario ,
-        Entidades.TipoUsuario" %>
+        DAOs.DAOObra ,
+        Entidades.Obra" %>
 <%
-    DAOModuloSistema dao = new DAOModuloSistema();
-    List<ModuloSistema> cat = dao.listInOrderNome();
-    DAOTipoUsuario daodao = new DAOTipoUsuario();
-    List<TipoUsuario> catcat = daodao.listInOrderNome();
+    DAOObra dao = new DAOObra();
+    Obra cat = new Obra();
+    String editando = request.getParameter("id");
+    if (editando != null) {
+        cat = dao.listById(Integer.parseInt(request.getParameter("id"))).get(0);
+    }
+%>
+<%@page import="java.util.*, 
+        DAOs.DAOTipoObra ,
+        Entidades.TipoObra" %>
+<%
+    DAOTipoObra daodao = new DAOTipoObra();
+    List<TipoObra> catcat = daodao.listInOrderNome();
+%>
+<%@page import="java.util.*, 
+        DAOs.DAOStatus ,
+        Entidades.Status" %>
+<%
+    DAOStatus daodaodao = new DAOStatus();
+    List<Status> catcatcat = daodaodao.listInOrderNome();
 %>
 <!DOCTYPE html>
 <html>

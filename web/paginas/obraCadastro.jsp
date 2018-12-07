@@ -4,19 +4,33 @@
     Author     : Jaque
 --%>
 
-<%@page import="Entidades.TipoObra"%>
-<%@page import="DAOs.DAOTipoObra"%>
+<%@page import="Entidades.Obra"%>
+<%@page import="DAOs.DAOObra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*, 
+        DAOs.DAOObra ,
+        Entidades.Obra" %>
+<%
+    DAOObra dao = new DAOObra();
+    Obra cat = new Obra();
+    String editando = request.getParameter("id");
+    if (editando != null) {
+        cat = dao.listById(Integer.parseInt(request.getParameter("id"))).get(0);
+    }
+%>
+<%@page import="java.util.*, 
+        DAOs.DAOTipoObra ,
+        Entidades.TipoObra" %>
+<%
+    DAOTipoObra daodao = new DAOTipoObra();
+    List<TipoObra> catcat = daodao.listInOrderNome();
+%>
 <%@page import="java.util.*, 
         DAOs.DAOStatus ,
         Entidades.Status" %>
 <%
-    DAOStatus dao = new DAOStatus();
-    List<Status> cat = dao.listInOrderNome();
-%>
-<%
-    DAOTipoObra daodao = new DAOTipoObra();
-    List<TipoObra> catcat = daodao.listInOrderNome();
+    DAOStatus daodaodao = new DAOStatus();
+    List<Status> catcatcat = daodaodao.listInOrderNome();
 %>
 <!DOCTYPE html>
 <html>
@@ -383,6 +397,20 @@
                     <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
+                                <label>ID</label>
+                                <% if (editando == null) {%>
+                                <input class="form-control"  type="text" disabled/>
+                                <% } else {%>
+                                <span class="form-control" disabled ><%=cat.getIdObra()%></span>
+                                <% }%>
+                                <input class="form-control"  type="hidden" name="id" value="<%=cat.getIdObra()%>"/>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">        
+                            <div class="form-group">
                                 <label>Nome</label>
                                 <input class="form-control" type="text" name="nome" />
                             </div>
@@ -393,7 +421,6 @@
                                 <input class="form-control" type="text" name="ano" />
                             </div>
                         </div>
-
                     </div>
                     <div class="row">
                         <div class="col-lg-6">        
@@ -412,17 +439,6 @@
                     <div>
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Status</label>
-                                <select class="form-control" name="status">
-                                    <option value="">--SELECIONE--</option>
-                                    <% for (Status c : cat) {%>
-                                    <option value="<%=c.getIdStatus()%>"><%=c.getNomeStatus()%></option>
-                                    <% }%>
-                                </select>
-                            </div>
-                        </div>                        
-                        <div class="col-lg-6">        
-                            <div class="form-group">
                                 <label>Tipo da Obra</label>
                                 <select class="form-control" name="tipoObra">
                                     <option value="">--SELECIONE--</option>
@@ -431,7 +447,18 @@
                                     <% }%>
                                 </select>
                             </div>
-                        </div>                        
+                        </div>
+                        <div class="col-lg-6">        
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select class="form-control" name="status">
+                                    <option value="">--SELECIONE--</option>
+                                    <% for (Status c : catcatcat) {%>
+                                    <option value="<%=c.getIdStatus()%>"><%=c.getNomeStatus()%></option>
+                                    <% }%>
+                                </select>
+                            </div>
+                        </div>    
                     </div>
 
                     <div class="row">

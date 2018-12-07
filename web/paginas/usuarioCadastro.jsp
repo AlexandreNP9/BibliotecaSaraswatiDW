@@ -4,13 +4,27 @@
     Author     : Jaque
 --%>
 
+<%@page import="Entidades.Usuario"%>
+<%@page import="DAOs.DAOUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*, 
+        DAOs.DAOUsuario ,
+        Entidades.Usuario" %>
+<%
+    DAOUsuario dao = new DAOUsuario();
+    Usuario cat = new Usuario();
+    String editando = request.getParameter("id");
+    if (editando != null) {
+        cat = dao.listById(Integer.parseInt(request.getParameter("id"))).get(0);
+    }
+%>
+
 <%@page import="java.util.*, 
         DAOs.DAOTipoUsuario ,
         Entidades.TipoUsuario" %>
 <%
-    DAOTipoUsuario dao = new DAOTipoUsuario();
-    List<TipoUsuario> cat = dao.listInOrderNome();
+    DAOTipoUsuario daodao = new DAOTipoUsuario();
+    List<TipoUsuario> catcat = daodao.listInOrderNome();
 %>
 <!DOCTYPE html>
 <html>
@@ -377,31 +391,44 @@
                     <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
-                                <label>Login</label>
-                                <input class="form-control" type="text" name="login" />
+                                <label>ID</label>
+                                <% if (editando == null) {%>
+                                <input class="form-control"  type="text" disabled/>
+                                <% } else {%>
+                                <span class="form-control" disabled ><%=cat.getIdUsuario()%></span>
+                                <% }%>
+                                <input class="form-control"  type="hidden" name="id" value="<%=cat.getIdUsuario()%>"/>
+
                             </div>
                         </div>
+                        <div class="col-lg-6">        
+                            <div class="form-group">
+                                <label>Login</label>
+                                <input class="form-control" type="text" name="login" value="<%=editando != null ? cat.getLoginUsuario() : ""%>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Nome</label>
                                 <input class="form-control" type="text" name="nome" />
                             </div>
                         </div>
-
-                    </div>
-                    <div class="row">
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Senha</label>
                                 <input class="form-control" type="password" name="senha" />
                             </div>
                         </div>
+                    </div>
+                    <div class=row">
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>TipoUsuario</label>
                                 <select class="form-control" name="tipoUsuario">
                                     <option value="">--SELECIONE--</option>
-                                    <% for (TipoUsuario c : cat) {%>
+                                    <% for (TipoUsuario c : catcat) {%>
                                     <option value="<%=c.getIdTipoUsuario()%>"><%=c.getNomeTipoUsuario()%></option>
                                     <% }%>
                                 </select>

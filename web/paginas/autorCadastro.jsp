@@ -393,7 +393,7 @@
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Sobrenome</label>
-                                <input class="form-control" type="text" name="sobrenome" value="<%=editando != null ? cat.getNomeAutor() : ""%>"/>
+                                <input class="form-control" type="text" name="sobrenome" value="<%=editando != null ? cat.getSobrenomeAutor() : ""%>"/>
                             </div>
                         </div>
                         <div class="col-lg-6">        

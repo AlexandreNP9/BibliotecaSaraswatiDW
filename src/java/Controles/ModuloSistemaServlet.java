@@ -46,7 +46,9 @@ public class ModuloSistemaServlet extends HttpServlet {
                 DAOModuloSistema daoModuloSistema = new DAOModuloSistema();
 
                 ModuloSistema moduloSistema = daoModuloSistema.listById(id).get(0);
+                
                 moduloSistema.setNomeModuloSistema(nome);//novo nome
+                
                 daoModuloSistema.atualizar(moduloSistema);
             } else {
                 //essa tabela está com o id automatico no banco, então não precisa setar aqui
@@ -56,6 +58,7 @@ public class ModuloSistemaServlet extends HttpServlet {
                 DAOModuloSistema daoModuloSistema = new DAOModuloSistema();
 
                 moduloSistema.setNomeModuloSistema(nome);
+               
                 daoModuloSistema.inserir(moduloSistema);
             }
             response.sendRedirect(request.getContextPath() + "/paginas/moduloSistemaListaScriptlet.jsp");

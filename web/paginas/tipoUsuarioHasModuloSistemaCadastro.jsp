@@ -4,20 +4,37 @@
     Author     : Jaque
 --%>
 
-<%@page import="Entidades.TipoUsuario"%>
-<%@page import="DAOs.DAOTipoUsuario"%>
+<%@page import="Entidades.TipoUsuarioHasModuloSistema"%>
+<%@page import="DAOs.DAOTipoUsuarioHasModuloSistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*, 
+        DAOs.DAOTipoUsuarioHasModuloSistema ,
+        Entidades.TipoUsuarioHasModuloSistema" %>
+<%
+    DAOTipoUsuarioHasModuloSistema dao = new DAOTipoUsuarioHasModuloSistema();
+    TipoUsuarioHasModuloSistema cat = new TipoUsuarioHasModuloSistema();
+    String editando = request.getParameter("id");
+    if (editando != null) {
+        cat = dao.listById(Integer.parseInt(request.getParameter("id"))).get(0);
+    }
+%>
+
+<%@page import="java.util.*, 
+        DAOs.DAOTipoUsuario ,
+        Entidades.TipoUsuario" %>
+<%
+    DAOTipoUsuario daodao = new DAOTipoUsuario();
+    List<TipoUsuario> catcat = daodao.listInOrderNome();
+%>
 <%@page import="java.util.*, 
         DAOs.DAOModuloSistema ,
         Entidades.ModuloSistema" %>
 <%
-    DAOTipoUsuario dao = new DAOTipoUsuario();
-    List<TipoUsuario> cat = dao.listInOrderNome();
+    DAOModuloSistema daodaodao = new DAOModuloSistema();
+    List<ModuloSistema> catcatcat = daodaodao.listInOrderNome();
 %>
-<%
-    DAOModuloSistema daodao = new DAOModuloSistema();
-    List<ModuloSistema> catcat = daodao.listInOrderNome();
-%>
+
+
 <!DOCTYPE html>
 <html>
     <head> <link rel="stylesheet" href="../dist/css/sb-admin-2.css">
@@ -380,30 +397,45 @@
                 </div>
                 <!-- /.row -->
                 <form method="post" action="${pageContext.request.contextPath}/tipoUsuarioHasModuloSistema" role="form">
-                    <div>
+                    <div class="row">
                         <div class="col-lg-6">        
+                            <div class="form-group">
+                                <label>ID</label>
+                                <% if (editando == null) {%>
+                                <input class="form-control"  type="text" disabled/>
+                                <% } else {%>
+                                <span class="form-control" disabled ><%=cat.getIdTipoUsuarioHasModuloSistema()%></span>
+                                <% }%>
+                                <input class="form-control"  type="hidden" name="id" value="<%=cat.getIdTipoUsuarioHasModuloSistema()%>"/>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">   
                             <div class="form-group">
                                 <label>TipoUsuario</label>
                                 <select class="form-control" name="tipoUsuario">
                                     <option value="">--SELECIONE--</option>
-                                    <% for (TipoUsuario c : cat) {%>
+                                    <% for (TipoUsuario c : catcat) {%>
                                     <option value="<%=c.getIdTipoUsuario()%>"><%=c.getNomeTipoUsuario()%></option>
                                     <% }%>
                                 </select>
                             </div>
-                        </div>                        
-                        <div class="col-lg-6">        
+                        </div>
+                        <div class="col-lg-6">   
                             <div class="form-group">
                                 <label>ModuloSistema</label>
                                 <select class="form-control" name="moduloSistema">
                                     <option value="">--SELECIONE--</option>
-                                    <% for (ModuloSistema c : catcat) {%>
+                                    <% for (ModuloSistema c : catcatcat) {%>
                                     <option value="<%=c.getIdModuloSistema()%>"><%=c.getNomeModuloSistema()%></option>
                                     <% }%>
                                 </select>
                             </div>
-                        </div>                        
+                        </div>     
                     </div>
+
                     <div class="row">
                         <div class="col-lg-12">        
                             <button type="submit" class="btn btn-default" value="1" name="ok">Gravar</button>
