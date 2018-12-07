@@ -70,10 +70,12 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id do usuario" style="width: 170px;">Id</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Login do usuario" style="width: 170px;">Login</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nome do usuario" style="width: 170px;">Nome</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Senha do usuario" style="width: 170px;">Senha</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="TipoUsuario do usuario" style="width: 147px;">TipoUsuario</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Editar do usuario" style="width: 170px;">EDITAR</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -81,10 +83,12 @@
                                             for (Usuario p : usuarios) {
                                         %>
                                         <tr>
+                                            <td><%=p.getIdUsuario()%></td>
                                             <td><%=p.getLoginUsuario()%></td>
                                             <td><%=p.getNomeUsuario()%></td>
                                             <td><%=p.getSenhaUsuario()%></td>
                                             <td><%=p.getTipoUsuarioIdTipoUsuario().getNomeTipoUsuario()%></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/usuario.jsp?id=${cat.getIdUsuario()}">editar</a></td>
                                         </tr>
                                         <%}%>
 

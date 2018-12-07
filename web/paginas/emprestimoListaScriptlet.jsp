@@ -72,9 +72,11 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Id da emprestimo" style="width: 147px;">Id</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Usuario da emprestimo" style="width: 147px;">Usuário</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra da emprestimo" style="width: 147px;">Obra</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Data da emprestimo" style="width: 170px;">Data (dd/MM/yyyy)</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Editar do emprestimo" style="width: 170px;">EDITAR</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -82,9 +84,11 @@
                                             for (Emprestimo p : emprestimos) {
                                         %>
                                         <tr>
+                                            <td><%=p.getIdEmprestimo()%></td>
                                             <td><%=p.getUsuarioIdUsuario().getNomeUsuario()%></td>
                                             <td><%=p.getObraIdObra().getNomeObra()%></td>
                                             <td><%=sdf.format(p.getData())%></td>
+                                            <td><a href="editarEmprestimo.jsp">EDITAR</a></td>
                                         </tr>
                                         <%}%>
 

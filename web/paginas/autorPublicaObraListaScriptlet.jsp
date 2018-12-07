@@ -72,10 +72,12 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id da autorPublicaObra" style="width: 170px;">Id da publicação</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Local da autorPublicaObra" style="width: 170px;">Local da publicação</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Data da autorPublicaObra" style="width: 170px;">Data da publicação</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Obra da autorPublicaObra" style="width: 147px;">Obra</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Autor da autorPublicaObra" style="width: 147px;">Autor</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Editar do autorPublicaObra" style="width: 170px;">EDITAR</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,10 +85,12 @@
                                             for (AutorPublicaObra p : autorPublicaObras) {
                                         %>
                                         <tr>
+                                            <td><%=p.getIdAutorPublicaObra()%></td>
                                             <td><%=p.getLocalAutorPublicaObra()%></td>
                                             <td><%=sdf.format(p.getDataAutorPublicaObra())%></td>
                                             <td><%=p.getObraIdObra().getNomeObra()%></td>
                                             <td><%=p.getAutorIdAutor().getNomeAutor()%></td>
+                                            <td><a href="editarAutorPublicaObra.jsp">EDITAR</a></td>
                                         </tr>
                                         <%}%>
 

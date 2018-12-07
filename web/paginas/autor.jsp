@@ -15,7 +15,6 @@
         <title>Autor</title>
     </head>
     <body>
-        alert("SUCESSO");
         <c:redirect url="index.jsp"></c:redirect>        
 
     </body>

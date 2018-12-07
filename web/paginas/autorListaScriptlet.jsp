@@ -72,11 +72,13 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id do autor" style="width: 170px;">Id</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Sobrenome do autor" style="width: 170px;">Sobrenome</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nome do autor" style="width: 170px;">Nome</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nascimento do autor" style="width: 170px;">Nascimento (yyyy)</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Falecimento do autor" style="width: 170px;">Falecimento (yyyy)</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Imagem do autor" style="width: 170px;">Imagem</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Editar do autor" style="width: 170px;">EDITAR</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -84,11 +86,13 @@
                                             for (Autor p : autor) {
                                         %>
                                         <tr>
+                                            <td><%=p.getIdAutor()%></td>
                                             <td><%=p.getSobrenomeAutor()%></td>
                                             <td><%=p.getNomeAutor()%></td>
                                             <td><%=sdf.format(p.getNascimentoAutor())%></td>
                                             <td><%=sdf.format(p.getFalecimentoAutor())%></td>
                                             <td><%=p.getImagemAutor()%></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/autorCadastro.jsp?id=<%=p.getIdAutor()%>">editar</a></td>
                                         </tr>
                                         <%}%>
 

@@ -71,8 +71,10 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Id da tipoUsuarioHasModuloSistema" style="width: 147px;">Id</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="TipoUsuario da tipoUsuarioHasModuloSistema" style="width: 147px;">Usuário</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="ModuloSistema da tipoUsuarioHasModuloSistema" style="width: 147px;">ModuloSistema</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Editar do tipoUsuarioHasModuloSistema" style="width: 170px;">EDITAR</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -80,8 +82,10 @@
                                             for (TipoUsuarioHasModuloSistema p : tipoUsuarioHasModuloSistemas) {
                                         %>
                                         <tr>
+                                            <td><%=p.getIdTipoUsuarioHasModuloSistema()%></td>
                                             <td><%=p.getTipoUsuarioIdTipoUsuario().getNomeTipoUsuario()%></td>
                                             <td><%=p.getModuloSistemaIdModuloSistema().getNomeModuloSistema()%></td>
+                                            <td><a href="tipoUsuarioHasModuloSistemaCadastro.jsp">EDITAR</a></td>
                                         </tr>
                                         <%}%>
 
