@@ -57,7 +57,7 @@ public class UsuarioServlet extends HttpServlet {
                 Usuario usuario = daoUsuario.listById(id).get(0);
                 usuario.setLoginUsuario(login);//novo nome
                 usuario.setNomeUsuario(nome);//novo nome
-                usuario.setSenhaUsuario(senha);;
+                usuario.setSenhaUsuario(senha);
                 usuario.setTipoUsuarioIdTipoUsuario(tipoUsuarioId);
                 daoUsuario.atualizar(usuario);
             } else {
