@@ -412,13 +412,13 @@
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Nome</label>
-                                <input class="form-control" type="text" name="nome" />
+                                <input class="form-control" type="text" name="nome" value="<%=editando != null ? cat.getNomeUsuario(): ""%>"/>
                             </div>
                         </div>
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Senha</label>
-                                <input class="form-control" type="password" name="senha" />
+                                <input class="form-control" type="password" name="senha" value="<%=editando != null ? cat.getSenhaUsuario(): ""%>"/>
                             </div>
                         </div>
                     </div>
