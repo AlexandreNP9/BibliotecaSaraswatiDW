@@ -68,6 +68,7 @@
                     <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                         <div class="row"><div class="col-sm-12">
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <a href="statusCadastro.jsp">CADASTRAR OUTRO STATUS</a>
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id do status" style="width: 170px;">Id</th>
@@ -82,7 +83,7 @@
                                         <tr>
                                             <td><%=p.getIdStatus()%></td>
                                             <td><%=p.getNomeStatus()%></td>
-                                            <td><a href="${pageContext.request.contextPath}/paginas/statusCadastro.jsp?id=<%=p.getIdStatus()%>">editar</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/statusCadastro.jsp?id=<%=p.getIdStatus()%>">EDITAR</a></td>
                                         </tr>
                                         <%}%>
 

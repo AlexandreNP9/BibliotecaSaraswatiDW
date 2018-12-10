@@ -21,7 +21,7 @@
 <html>
     <head> <link rel="stylesheet" href="../dist/css/sb-admin-2.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastrar Módulo do Sistema</title>
+        <title>Cadastro de moduloSistema</title>
         <!-- Bootstrap Core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

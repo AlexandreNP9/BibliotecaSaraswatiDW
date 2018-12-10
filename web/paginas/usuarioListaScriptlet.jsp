@@ -68,6 +68,7 @@
                     <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                         <div class="row"><div class="col-sm-12">
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <a href="usuarioCadastro.jsp">CADASTRAR OUTRO USUÁRIO</a>
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id do usuario" style="width: 170px;">Id</th>
@@ -88,7 +89,7 @@
                                             <td><%=p.getNomeUsuario()%></td>
                                             <td><%=p.getSenhaUsuario()%></td>
                                             <td><%=p.getTipoUsuarioIdTipoUsuario().getNomeTipoUsuario()%></td>
-                                            <td><a href="${pageContext.request.contextPath}/paginas/usuarioCadastro.jsp?id=<%=p.getIdUsuario()%>">editar</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/usuarioCadastro.jsp?id=<%=p.getIdUsuario()%>">EDITAR</a></td>
                                         </tr>
                                         <%}%>
 

@@ -11,8 +11,8 @@
         java.text.NumberFormat" %>
 <%
     Locale ptBr = new Locale("pt", "BR");
-    NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);  
-    
+    NumberFormat formatoDinheiro = NumberFormat.getCurrencyInstance(ptBr);
+
     DAOModuloSistema dao = new DAOModuloSistema();
     List<ModuloSistema> moduloSistema = dao.listInOrderNome();
 %>
@@ -66,8 +66,10 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                        <div class="row"><div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12">
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <a href="moduloSistemaCadastro.jsp">CADASTRAR OUTRO MÓDULO DO SISTEMA</a>
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id do moduloSistema" style="width: 170px;">Id</th>
@@ -82,14 +84,16 @@
                                         <tr>
                                             <td><%=p.getIdModuloSistema()%></td>
                                             <td><%=p.getNomeModuloSistema()%></td>
-                                            <td><a href="${pageContext.request.contextPath}/paginas/moduloSistemaCadastro.jsp?id=<%=p.getIdModuloSistema()%>">editar</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/moduloSistemaCadastro.jsp?id=<%=p.getIdModuloSistema()%>">EDITAR</a></td>
                                         </tr>
                                         <%}%>
 
                                     </tbody>
-                                </table></div></div>
+                                </table>
+                            </div>
+                        </div>
                         <!-- /.table-responsive -->
-                    </div>
+                     </div>
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->

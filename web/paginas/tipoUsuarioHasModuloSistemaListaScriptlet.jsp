@@ -69,6 +69,7 @@
                     <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                         <div class="row"><div class="col-sm-12">
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <a href="tipoUsuarioHasModuloSistemaCadastro.jsp">CADASTRAR OUTRO TIPO DE USUÁRIO HAS MÓDULO DO SISTEMA</a>
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Id da tipoUsuarioHasModuloSistema" style="width: 147px;">Id</th>
@@ -85,7 +86,7 @@
                                             <td><%=p.getIdTipoUsuarioHasModuloSistema()%></td>
                                             <td><%=p.getTipoUsuarioIdTipoUsuario().getNomeTipoUsuario()%></td>
                                             <td><%=p.getModuloSistemaIdModuloSistema().getNomeModuloSistema()%></td>
-                                            <td><a href="${pageContext.request.contextPath}/paginas/tipoUsuarioHasModuloSistemaCadastro.jsp?id=<%=p.getIdTipoUsuarioHasModuloSistema()%>">editar</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/paginas/tipoUsuarioHasModuloSistemaCadastro.jsp?id=<%=p.getIdTipoUsuarioHasModuloSistema()%>">EDITAR</a></td>
                                         </tr>
                                         <%}%>
 
