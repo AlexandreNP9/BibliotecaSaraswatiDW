@@ -413,13 +413,14 @@
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Local</label>
-                                <input class="form-control" type="text" name="local" />
+                                <input class="form-control" type="text" name="local" value="<%editando != null ? cat.getLocalAutorPublicaObra() : "%>"/>
+
                             </div>
                         </div>
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Data (dd/MM/yyyy)</label>
-                                <input class="form-control" type="text" name="data" />
+                                <input class="form-control" type="text" name="data" value="<%editando != null ? cat.getDataAutorPublicaObra() :"%>"/>
                             </div>
                         </div>
 

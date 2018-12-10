@@ -61,22 +61,22 @@ public class AutorPublicaObraServlet extends HttpServlet {
                 
                 DAOAutorPublicaObra daoAutorPublicaObra = new DAOAutorPublicaObra();
 
-                AutorPublicaObra autorPublicaAutorPublicaObra = daoAutorPublicaObra.listById(id).get(0);
+                AutorPublicaObra autorPublicaObra = daoAutorPublicaObra.listById(id).get(0);
                 
-                autorPublicaAutorPublicaObra.setLocalAutorPublicaObra(local);
-                autorPublicaAutorPublicaObra.setDataAutorPublicaObra(data);
+                autorPublicaObra.setLocalAutorPublicaObra(local);
+                autorPublicaObra.setDataAutorPublicaObra(data);
                 
                 DAOObra daoObra = new DAOObra();
                 Obra obra = daoObra.listById(obraId).get(id);
                 
-                autorPublicaAutorPublicaObra.setObraIdObra(obra);
+                autorPublicaObra.setObraIdObra(obra);
                 
                 DAOAutor daoAutor = new DAOAutor();
                 Autor autor = daoAutor.listById(autorId).get(0);
                 
-                autorPublicaAutorPublicaObra.setAutorIdAutor(autor);
+                autorPublicaObra.setAutorIdAutor(autor);
                 
-                daoAutorPublicaObra.atualizar(autorPublicaAutorPublicaObra);
+                daoAutorPublicaObra.atualizar(autorPublicaObra);
             } else {
                 String local = request.getParameter("local");
                 Date data = null;
@@ -88,23 +88,23 @@ public class AutorPublicaObraServlet extends HttpServlet {
                 int obraId = Integer.parseInt(request.getParameter("obra"));
                 int autorId = Integer.parseInt(request.getParameter("autor"));
                 
-                AutorPublicaObra autorPublicaAutorPublicaObra = new AutorPublicaObra();
+                AutorPublicaObra autorPublicaObra = new AutorPublicaObra();
                 DAOAutorPublicaObra daoAutorPublicaObra = new DAOAutorPublicaObra();
 
-                autorPublicaAutorPublicaObra.setLocalAutorPublicaObra(local);
-                autorPublicaAutorPublicaObra.setDataAutorPublicaObra(data);
+                autorPublicaObra.setLocalAutorPublicaObra(local);
+                autorPublicaObra.setDataAutorPublicaObra(data);
                 
                 DAOObra daoObra = new DAOObra();
                 Obra obra = daoObra.listById(obraId).get(0);
                 
-                autorPublicaAutorPublicaObra.setObraIdObra(obra);
+                autorPublicaObra.setObraIdObra(obra);
                 
                 DAOAutor daoAutor = new DAOAutor();
                 Autor autor = daoAutor.listById(autorId).get(0);
                 
-                autorPublicaAutorPublicaObra.setAutorIdAutor(autor);
+                autorPublicaObra.setAutorIdAutor(autor);
                 
-                daoAutorPublicaObra.inserir(autorPublicaAutorPublicaObra);
+                daoAutorPublicaObra.inserir(autorPublicaObra);
             }
             response.sendRedirect(request.getContextPath() + "/paginas/autorPublicaObraListaScriptlet.jsp");
             
