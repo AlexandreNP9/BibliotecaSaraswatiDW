@@ -412,13 +412,13 @@
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Nome</label>
-                                <input class="form-control" type="text" name="nome" />
+                                <input class="form-control" type="text" name="nome" value="<%=editando != null ? cat.getNomeObra(): ""%>"/>
                             </div>
                         </div>
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Ano de publicação</label>
-                                <input class="form-control" type="text" name="ano" />
+                                <input class="form-control" type="text" name="ano" value="<%=editando != null ? cat.getAnoObra(): ""%>"/>
                             </div>
                         </div>
                     </div>
@@ -426,13 +426,13 @@
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Quantidade</label>
-                                <input class="form-control" type="text" name="quantidade" />
+                                <input class="form-control" type="text" name="quantidade" value="<%=editando != null ? cat.getQuantidadeObra(): ""%>"/>
                             </div>
                         </div>
                         <div class="col-lg-6">        
                             <div class="form-group">
                                 <label>Observações</label>
-                                <input class="form-control" type="text" name="observacoes" />
+                                <input class="form-control" type="text" name="observacoes" value="<%=editando != null ? cat.getObservacoesObra(): ""%>"/>
                             </div>
                         </div>
                     </div>
